@@ -1,12 +1,10 @@
 package com.mezza.app.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
+@Entity
 public class Pago {
 
     @Id

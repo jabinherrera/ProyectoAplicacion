@@ -18,7 +18,7 @@ public class Administrador {
     @Column (name="email", nullable = false)
     private String email;
 
-    @Column (name = "nombre", nullable = false)
+    @Column (name = "contrasena", nullable = false)
     private String contrasena;
 
 
