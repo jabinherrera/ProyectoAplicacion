@@ -1,0 +1,18 @@
+body {
+    background-image: url("../../templates/assets/img/fondo-mezza.png");
+    background-size: 100%;
+}
+
+#container-pagina {
+    margin: auto;
+    padding: 100px;
+}
+
+#info-restarurant {
+    margin: auto;
+}
+
+input:hover {
+    opacity: 0.8;
+}
+
