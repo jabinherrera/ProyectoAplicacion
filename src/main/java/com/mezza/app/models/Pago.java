@@ -15,8 +15,6 @@ public class Pago {
     private LocalDateTime fecha;
     @Column
     private int monto;
-    @Column
-    private String tipo;
 
 
 
