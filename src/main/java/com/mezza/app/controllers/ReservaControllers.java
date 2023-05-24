@@ -1,9 +1,6 @@
 package com.mezza.app.controllers;
 
-import com.mezza.app.models.Pago;
 import com.mezza.app.models.Reserva;
-import com.mezza.app.repositories.ReservaRepository;
-import com.mezza.app.services.AdministradorServices;
 import com.mezza.app.services.ReservaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,12 +14,12 @@ import java.time.LocalTime;
 public class ReservaControllers {
 
     @Autowired
-    private ReservaServices ReservaServices;
+    private ReservaServices reservaServices;
 
     @PostMapping("reserva/guardar")
     public ResponseEntity<?> guardar(@RequestBody Reserva reserva) {
         try {
-            ReservaServices.guardar(reserva);
+            reservaServices.guardar(reserva);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
