@@ -9,7 +9,7 @@ import java.util.Date;
 public class Reserva {
 
     @Id
-    private int id_Reserva;
+    private Long id_Reserva;
 
     @Column(name = "fecha", nullable = false)
     private Date fecha;
