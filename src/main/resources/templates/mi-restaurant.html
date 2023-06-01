@@ -15,32 +15,32 @@
 <body style="background-color: #FFFFFF;">
 
 <div class="row row-cols-auto justify-content-center" style="background-color:#C7C4C4;">
-    <a href="dashboard-admin.html"><img class="col rounded-4 float-start my-2 me-auto ms-3" src="../static/img/logomezza.png" height="60" width="60"></a>
+    <a href="dashboard-admin.html" th:href><img class="col rounded-4 float-start my-2 me-auto ms-3" src="../static/img/logomezza.png" height="60" width="60" th:src></a>
 
     <nav class="col-8 text-end my-auto">
         <div class="container-sm">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">Mi Cuenta</button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Mi Cuenta</h5>
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel" th:text>Mi Cuenta</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" th:list>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="mi-cuenta.html">Mi Cuenta</a>
+                            <a class="nav-link active" aria-current="page" href="mi-cuenta.html" th:href>Mi Cuenta</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="administrar-usuarios.html">Administrar Usuarios</a>
+                            <a class="nav-link active" aria-current="page" href="administrar-usuarios.html" th:href>Administrar Usuarios</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="mi-restaurant.html">Mi restaurant</a>
+                            <a class="nav-link active" aria-current="page" href="mi-restaurant.html" th:href>Mi restaurant</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="login-admin.html">Cerrar Sesión</a>
+                            <a class="nav-link active" aria-current="page" href="login-admin.html" th:href>Cerrar Sesión</a>
                         </li>
 
                     </ul>
@@ -48,33 +48,33 @@
             </div>
         </div>
     </nav>
-    <img class="col rounded-circle float-end my-2 ms-0 me-3" src="../static/img/user-profile.jpg" height="60">
+    <img class="col rounded-circle float-end my-2 ms-0 me-3" src="../static/img/user-profile.jpg" height="60" th:src>
 </div>
 
 <div class="text-center my-3">
-    <img src="../static/img/logo-restaurant.png" class="rounded-circle border border-dark" alt="..." style="width:10rem">
+    <img src="../static/img/logo-restaurant.png" class="rounded-circle border border-dark" alt="..." style="width:10rem" th:src>
 </div>
 <div class="container-md justify-content m-auto">
     <table class="table m-auto">
         <tbody>
         <tr>
             <th></th>
-            <td>+569 12345678</td>
+            <td th:text>+569 12345678</td>
             <td><button class="btn">Editar</button></td>
         </tr>
         <tr>
             <th></th>
-            <td>info@restaurant.cl</td>
+            <td th:text>info@restaurant.cl</td>
             <td><button class="btn">Editar</button></td>
         </tr>
         <tr>
             <th></th>
-            <td>Restaurant_fb</td>
+            <td th:text>Restaurant_fb</td>
             <td><button class="btn">Editar</button></td>
         </tr>
         <tr>
             <th></th>
-            <td>Restaurant_ig</td>
+            <td th:text>Restaurant_ig</td>
             <td><button class="btn">Editar</button></td>
         </tr>
         </tbody>
@@ -82,10 +82,10 @@
 </div>
 
 <div class="container mt-3">
-    <h4 class="text-center my-5">Horarios</h4>
+    <h4 class="text-center my-5" th:text>Horarios</h4>
     <div class="row my-2" style="">
         <div class="col text-center">
-            <h6>Lunes</h6>
+            <h6 th:text>Lunes</h6>
         </div>
         <div class="col">
             <input type="time" class="form-control" placeholder="Horario de apertura">
@@ -103,7 +103,7 @@
 
     <div class="row my-2" style="">
         <div class="col text-center">
-            <h6>Martes</h6>
+            <h6 th:text>Martes</h6>
         </div>
         <div class="col">
             <input type="time" class="form-control" placeholder="Horario de apertura">
@@ -121,7 +121,7 @@
 
     <div class="row my-2" style="">
         <div class="col text-center">
-            <h6>Miercoles</h6>
+            <h6 th:text>Miercoles</h6>
         </div>
         <div class="col">
             <input type="time" class="form-control" placeholder="Horario de apertura">
@@ -139,7 +139,7 @@
 
     <div class="row my-2" style="">
         <div class="col text-center">
-            <h6>Jueves</h6>
+            <h6 th:text>Jueves</h6>
         </div>
         <div class="col">
             <input type="time" class="form-control" placeholder="Horario de apertura">
@@ -157,7 +157,7 @@
 
     <div class="row my-2" style="">
         <div class="col text-center">
-            <h6>Viernes</h6>
+            <h6 th:text>Viernes</h6>
         </div>
         <div class="col">
             <input type="time" class="form-control" placeholder="Horario de apertura">
@@ -175,7 +175,7 @@
 
     <div class="row my-2" style="">
         <div class="col text-center">
-            <h6>Sabado</h6>
+            <h6 th:text>Sabado</h6>
         </div>
         <div class="col">
             <input type="time" class="form-control" placeholder="Horario de apertura">
@@ -193,7 +193,7 @@
 
     <div class="row my-2" style="">
         <div class="col text-center">
-            <h6>Domingo</h6>
+            <h6 th:text>Domingo</h6>
         </div>
         <div class="col">
             <input type="time" class="form-control" placeholder="Horario de apertura">
