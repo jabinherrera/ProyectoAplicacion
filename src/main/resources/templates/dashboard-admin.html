@@ -10,32 +10,32 @@
 <body style="background-color: #FFFFFF;">
 
         <div class="row row-cols-auto justify-content-center" style="background-color:#C7C4C4;">
-            <a href="dashboard-admin.html"><img class="col rounded-4 float-start my-2 me-auto ms-3" src="../static/img/logomezza.png" height="60" width="60"></a>
+            <a href="dashboard-admin.html" th:href><img class="col rounded-4 float-start my-2 me-auto ms-3" src="../static/img/logomezza.png" height="60" width="60" th:src></a>
 
             <nav class="col-8 text-end my-auto">
                 <div class="container-sm">
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">Administrador</button>
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Administrador</h5>
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel" th:text>Administrador</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
-                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" th:list>
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="mi-cuenta.html">Mi Cuenta</a>
+                                    <a class="nav-link active" aria-current="page" href="mi-cuenta.html" th:text>Mi Cuenta</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="administrar-usuarios.html">Administrar Usuarios</a>
+                                    <a class="nav-link active" aria-current="page" href="administrar-usuarios.html" th:text>Administrar Usuarios</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="mi-restaurant.html">Mi restaurant</a>
+                                    <a class="nav-link active" aria-current="page" href="mi-restaurant.html" th:text>Mi restaurant</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="login-admin.html">Cerrar Sesión</a>
+                                    <a class="nav-link active" aria-current="page" href="login-admin.html" th:text>Cerrar Sesión</a>
                                 </li>
 
                             </ul>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </nav>
-            <img class="col rounded-circle float-end my-2 ms-0 me-3" src="../static/img/user-profile.jpg" height="60">
+            <img class="col rounded-circle float-end my-2 ms-0 me-3" src="../static/img/user-profile.jpg" height="60" th:src>
         </div>
 
         <div class="container text-center m-auto">
@@ -51,18 +51,18 @@
                 <div class="col-4">
                     <div class="card text-center ms-0 me-5" style="background-color:#FFB774;">
                         <div class="card-body" style="color: #FFFFFF;">
-                        <h2 class="card-title">Reservas de hoy</h2>
-                        <p class="card-text fs-1 fw-semibold">0</p>
-                        <a href="today-admin.html" type="button" class="btn btn-light">Ver detalles</a>
+                        <h2 class="card-title" th:text>Reservas de hoy</h2>
+                        <p class="card-text fs-1 fw-semibold" th:text>0</p>
+                        <a href="today-admin.html" type="button" class="btn btn-light" th:href>Ver detalles</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="card text-center ms-5 me-0" style="background-color:#6782B6;">
                         <div class="card-body" style="color: #FFFFFF;">
-                        <h2 class="card-title">Reservas de mañana</h2>
-                        <p class="card-text fs-1 fw-semibold">0</p>
-                        <a href="tomorrow-admin.html" type="button" class="btn btn-light">Ver detalles</a>
+                        <h2 class="card-title" th:text>Reservas de mañana</h2>
+                        <p class="card-text fs-1 fw-semibold" th:text>0</p>
+                        <a href="tomorrow-admin.html" type="button" class="btn btn-light" th:href>Ver detalles</a>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                 <div class="col-8">
                     <div class="card text-center" style="background-color:#81B5C0;">
                         <div class="card-body d-grid gap-2">
-                            <a href="nextdays-admin.html" class="btn fs-4 fw-medium" style="color:#ffffff;" type="button"role="button">Ver próximas reservas</a>
+                            <a href="nextdays-admin.html" class="btn fs-4 fw-medium" style="color:#ffffff;" type="button"role="button" th:href>Ver próximas reservas</a>
                         </div>
                     </div>
                 </div>

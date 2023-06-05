@@ -1,5 +1,5 @@
 body {
-    background-image: url("../../templates/assets/img/fondo-mezza.png");
+    background-image: url("/../static/img/fondo-mezza.png");
     background-size: 100%;
 }
 

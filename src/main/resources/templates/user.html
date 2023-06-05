@@ -15,22 +15,22 @@
         <div class="row text-center">
             <div class="col-4">
                 <div class="card text-center" id="info-restarurant" style="width: 18rem; height:100%; background: #D9D9D9; opacity: 85%;">
-                    <img src="../static/img/logo-restaurant.png" class="card-img-top" alt="...">
+                    <img src="../static/img/logo-restaurant.png" class="card-img-top" alt="..." th:src>
                     <div class="card-body">
-                        <p class="card-text">Para mas informacion, comunicarse a</p>
-                        <img src="../static/img/whatsapp-logo.png" height="15">
-                        <a href="#" class="card-link link-underline link-underline-opacity-0">+569 12345678</a>
+                        <p class="card-text" th:text>Para mas informacion, comunicarse a</p>
+                        <img src="../static/img/whatsapp-logo.png" height="15" th:src>
+                        <a href="#" class="card-link link-underline link-underline-opacity-0" th:href>+569 12345678</a>
                         <br>
-                        <img src="../static/img/mail-logo.png" height="15">
-                        <a href="#" class="card-link link-underline link-underline-opacity-0">info@restaurant.cl</a>
+                        <img src="../static/img/mail-logo.png" height="15" th:src>
+                        <a href="#" class="card-link link-underline link-underline-opacity-0" th:href>info@restaurant.cl</a>
                         <br>
                         <br>
-                        <p class="card-text">O visite nuestras redes sociales</p>
-                        <img src="../static/img/facebook-logo.png" height="15">
-                        <a href="#" class="card-link link-underline link-underline-opacity-0">Restaurant_fb</a>
+                        <p class="card-text" th:text>O visite nuestras redes sociales</p>
+                        <img src="../static/img/facebook-logo.png" height="15" th:src>
+                        <a href="#" class="card-link link-underline link-underline-opacity-0" th:href>Restaurant_fb</a>
                         <br>
-                        <img src="../static/img/instagram-logo.png" height="15">
-                        <a href="#" class="card-link link-underline link-underline-opacity-0">Restaurant_ig</a>
+                        <img src="../static/img/instagram-logo.png" height="15" th:src>
+                        <a href="#" class="card-link link-underline link-underline-opacity-0" th:href>Restaurant_ig</a>
                     </div>
                 </div>
             </div>
@@ -44,22 +44,22 @@
                         <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">2</button>
                         <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">3</button>
                     </div>
-                    <h2 style="color: white">Haz tu reserva ahora</h2>
+                    <h2 style="color: white" th:text>Haz tu reserva ahora</h2>
                 </div>
 
-                <form class="needs-validation" target="_self" method="POST" action="user-redirect.html">
+                <form class="needs-validation" target="_self" method="POST" action="user-redirect.html" th:form>
                     <hr class="my-4 border-3 opacity-100">
                     <div class="row">
                         <div class="col">
-                            <label style="color: white">Fecha</label>
+                            <label style="color: white" th:label>Fecha</label>
                             <input type="date" class="form-control text-center" required>
                         </div>
                         <div class="col">
-                            <label style="color: white">Hora</label>
+                            <label style="color: white" th:label>Hora</label>
                             <input type="time" class="form-control text-center" placeholder="00:00" required>
                         </div>
                         <div class="col">
-                            <label style="color: white">N° Personas</label>
+                            <label style="color: white" th:label>N° Personas</label>
                             <input type="number" class="form-control text-center" placeholder="1" required>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
         </div>
     <br>
     <div class="container text-center">
-        <img src="../static/img/develop-mezza.png" height="50">
+        <img src="../static/img/develop-mezza.png" height="50" th:src>
     </div>
 </div>
 </body>
