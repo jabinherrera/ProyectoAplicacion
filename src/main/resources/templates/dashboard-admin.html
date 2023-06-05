@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </nav>
-            <img class="col rounded-circle float-end my-2 ms-0 me-3" src="../static/img/user-profile.jpg" height="60">
+            <img class="col rounded-circle float-end my-2 ms-0 me-3" src="../static/img/user-profile.jpg" height="60" th:src>
         </div>
 
         <div class="container text-center m-auto">
@@ -51,18 +51,18 @@
                 <div class="col-4">
                     <div class="card text-center ms-0 me-5" style="background-color:#FFB774;">
                         <div class="card-body" style="color: #FFFFFF;">
-                        <h2 class="card-title">Reservas de hoy</h2>
-                        <p class="card-text fs-1 fw-semibold">0</p>
-                        <a href="today-admin.html" type="button" class="btn btn-light">Ver detalles</a>
+                        <h2 class="card-title" th:text>Reservas de hoy</h2>
+                        <p class="card-text fs-1 fw-semibold" th:text>0</p>
+                        <a href="today-admin.html" type="button" class="btn btn-light" th:href>Ver detalles</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="card text-center ms-5 me-0" style="background-color:#6782B6;">
                         <div class="card-body" style="color: #FFFFFF;">
-                        <h2 class="card-title">Reservas de mañana</h2>
-                        <p class="card-text fs-1 fw-semibold">0</p>
-                        <a href="tomorrow-admin.html" type="button" class="btn btn-light">Ver detalles</a>
+                        <h2 class="card-title" th:text>Reservas de mañana</h2>
+                        <p class="card-text fs-1 fw-semibold" th:text>0</p>
+                        <a href="tomorrow-admin.html" type="button" class="btn btn-light" th:href>Ver detalles</a>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                 <div class="col-8">
                     <div class="card text-center" style="background-color:#81B5C0;">
                         <div class="card-body d-grid gap-2">
-                            <a href="nextdays-admin.html" class="btn fs-4 fw-medium" style="color:#ffffff;" type="button"role="button">Ver próximas reservas</a>
+                            <a href="nextdays-admin.html" class="btn fs-4 fw-medium" style="color:#ffffff;" type="button"role="button" th:href>Ver próximas reservas</a>
                         </div>
                     </div>
                 </div>
