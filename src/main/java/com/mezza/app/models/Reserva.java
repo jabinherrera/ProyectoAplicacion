@@ -3,11 +3,12 @@ package com.mezza.app.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 @Entity
-
+@Table
 public class Reserva {
 
     @Id
@@ -19,6 +20,17 @@ public class Reserva {
     @Column(name = "hora", nullable = false)
     private Time hora;
 
-    @Column(name = "id_Restaurante", nullable = false)
-    private int id_Restaurante;
+    @Column(name = "cant_personas", nullable = false)
+    private Integer cant_personas;
+
+    @Column(name = "nombre", nullable = false)
+    private String nombre_cliente;
+
+    @Column(name = "apellido", nullable = false)
+    private String apellido_cliente;
+
+    @Column (name = "email", nullable = false)
+    private String email_cliente;
+
+
 }
