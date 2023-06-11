@@ -15,7 +15,8 @@ public class ReservaControllers {
     private ReservaServices reservaServices;
 
     @GetMapping("/reserva/guardar")
-    public String reservar() {
+    public String reservar(Model model) {
+        model.addAttribute("reservaForm", new Reserva());
         return "reserva";
     }
 

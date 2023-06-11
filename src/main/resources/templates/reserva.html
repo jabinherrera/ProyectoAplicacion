@@ -7,7 +7,7 @@
     <meta name="author" content=""/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../static/css/user.css">
+    <link rel="stylesheet" th:href="@{/css/user.css}">
     <title>Mezza</title>
 </head>
 <body>
@@ -15,22 +15,22 @@
         <div class="row text-center">
             <div class="col-4">
                 <div class="card text-center" id="info-restarurant" style="width: 18rem; height:100%; background: #D9D9D9; opacity: 85%;">
-                    <img src="../static/img/logo-restaurant.png" class="card-img-top" alt="..." th:src>
+                    <img th:src="@{/img/logo-restaurant.png}" class="card-img-top" alt="..." >
                     <div class="card-body">
                         <p class="card-text" th:text>Para mas informacion, comunicarse a</p>
-                        <img src="../static/img/whatsapp-logo.png" height="15" th:src>
-                        <a href="#" class="card-link link-underline link-underline-opacity-0" th:href>+569 12345678</a>
+                        <img th:src="@{/img/whatsapp-logo.png}" height="15" >
+                        <a href="#" class="card-link link-underline link-underline-opacity-0" >+569 12345678</a>
                         <br>
-                        <img src="../static/img/mail-logo.png" height="15" th:src>
-                        <a href="#" class="card-link link-underline link-underline-opacity-0" th:href>info@restaurant.cl</a>
+                        <img th:src="@{/img/mail-logo.png}" height="15" >
+                        <a href="#" class="card-link link-underline link-underline-opacity-0" >info@restaurant.cl</a>
                         <br>
                         <br>
                         <p class="card-text" th:text>O visite nuestras redes sociales</p>
-                        <img src="../static/img/facebook-logo.png" height="15" th:src>
-                        <a href="#" class="card-link link-underline link-underline-opacity-0" th:href>Restaurant_fb</a>
+                        <img th:src="@{/img/facebook-logo.png}" height="15" >
+                        <a href="#" class="card-link link-underline link-underline-opacity-0" >Restaurant_fb</a>
                         <br>
-                        <img src="../static/img/instagram-logo.png" height="15" th:src>
-                        <a href="#" class="card-link link-underline link-underline-opacity-0" th:href>Restaurant_ig</a>
+                        <img th:src="@{/img/instagram-logo.png}" height="15" >
+                        <a href="#" class="card-link link-underline link-underline-opacity-0" >Restaurant_ig</a>
                     </div>
                 </div>
             </div>
@@ -47,16 +47,16 @@
                     <h2 style="color: white" th:text>Haz tu reserva ahora</h2>
                 </div>
 
-                <form class="needs-validation" target="_self" method="POST" th:action="@{/reserva/guardar}">
+                <form class="needs-validation" target="_self" method="POST" th:action="@{/reserva/guardar}" th:object="${reservaForm}">
                     <hr class="my-4 border-3 opacity-100">
                     <div class="row">
                         <div class="col">
                             <label style="color: white" th:label>Fecha</label>
-                            <input th:field="${reserva.fecha}" type="date" id="datePickerId" class="form-control text-center" required>
+                            <input th:field="*{fecha}" type="date" id="datePickerId" class="form-control text-center" required>
                         </div>
                         <div class="col">
                             <label style="color: white" >Hora</label>
-                            <input  th:field="${reserva.hora}" type="time" list="horas" class="form-control text-center" placeholder="00:00" min="09:00" max="20:00"  required>
+                            <input  th:field="*{hora}" type="time" list="horas" class="form-control text-center" placeholder="00:00" min="09:00" max="20:00"  required>
                             <datalist id="horas">
                                 <option value="09:00"></option>
                                 <option value="09:30"></option>
@@ -84,18 +84,18 @@
                         </div>
                         <div class="col">
                             <label style="color: white" th:label>N° Personas</label>
-                            <input th:field="reserva.cant_personas" type="number" min="1" max="12"class="form-control text-center" placeholder="1" required>
+                            <input th:field="*{cant_personas}" type="number" min="1" max="12"class="form-control text-center" placeholder="1" required>
                         </div>
                     </div>
                     <hr class="my-4 border-3 opacity-100">
                     <div class="mb-3">
-                        <input th:field="reserva.nombre_cliente" type="text" class="form-control" id="Tu nombre" placeholder="Tu nombre" required>
+                        <input th:field="*{nombre_cliente}" type="text" class="form-control" id="Tu nombre" placeholder="Tu nombre" required>
                     </div>
                     <div class="mb-3">
-                        <input th:field="reserva.apellido_cliente" type="text" class="form-control" id="Tu apellido" placeholder="Tu apellido" required>
+                        <input th:field="*{apellido_cliente}" type="text" class="form-control" id="Tu apellido" placeholder="Tu apellido" required>
                     </div>
                     <div class="mb-3">
-                        <input th:field="reserva.email_cliente" type="email" class="form-control" id="exampleInputEmail1" placeholder="Tu correo electronico" required>
+                        <input th:field="*{email_cliente}" type="email" class="form-control" id="exampleInputEmail1" placeholder="Tu correo electronico" required>
                     </div>
                     <button type="submit" class="btn btn-primary" >Reservar</button>
                 </form>
@@ -103,7 +103,7 @@
         </div>
     <br>
     <div class="container text-center">
-        <img th:src="../static/img/develop-mezza.png" height="50" >
+        <img th:src="@{/img/develop-mezza.png}" height="50" >
     </div>
 </div>
 </body>
