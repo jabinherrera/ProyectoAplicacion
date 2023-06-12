@@ -10,7 +10,8 @@
     <link rel="stylesheet" th:href="@{/css/user.css}">
     <title>Mezza</title>
 </head>
-<body>
+<body class="bg-image"
+      style="background-image: url('static/img/fondo-mezza.png');">
 <div id="container-pagina">
         <div class="row text-center">
             <div class="col-4">
@@ -56,8 +57,8 @@
                         </div>
                         <div class="col">
                             <label style="color: white" >Hora</label>
-                            <input  th:field="*{hora}" type="time" list="horas" class="form-control text-center" placeholder="00:00" min="09:00" max="20:00"  required>
-                            <datalist id="horas">
+                            <input  th:field="*{hora}" type="time" class="form-control text-center" placeholder="00:00" min="09:00" max="20:00" step="1800" th:value="*{#dates.format(hora, 'HH:mm')}" required>
+                            <!--<datalist id="horas">
                                 <option value="09:00"></option>
                                 <option value="09:30"></option>
                                 <option value="10:00"></option>
@@ -80,7 +81,7 @@
                                 <option value="18:30"></option>
                                 <option value="19:00"></option>
                                 <option value="19:30"></option>
-                            </datalist>
+                            </datalist>-->
                         </div>
                         <div class="col">
                             <label style="color: white" th:label>N° Personas</label>
