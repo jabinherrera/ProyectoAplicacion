@@ -57,7 +57,7 @@
                         </div>
                         <div class="col">
                             <label style="color: white" >Hora</label>
-                            <input  th:field="*{hora}" type="time" class="form-control text-center" placeholder="00:00" min="09:00" max="20:00" step="1800" th:value="*{#dates.format(hora, 'HH:mm')}" required>
+                            <input  th:field="*{hora}" type="time" id="horaInput" class="form-control text-center" placeholder="00:00" min="09:00" max="20:00" onchange="formatoHora()" required>
                             <!--<datalist id="horas">
                                 <option value="09:00"></option>
                                 <option value="09:30"></option>
@@ -111,6 +111,12 @@
 <script>
     datePickerId.min = new Date().toISOString().split("T")[0];
 
+function formatoHora() {
+  const input = document.getElementById('horaInput');
+  const hora = input.value.split(':'); // Separar la hora en horas y minutos
+  const horaFormateada = hora[0].padStart(2, '0') + ':' + hora[1].padStart(2, '0'); // Formatear la hora
+  input.value = horaFormateada; // Actualizar el valor del input
+}
 
 </script>
 </html>

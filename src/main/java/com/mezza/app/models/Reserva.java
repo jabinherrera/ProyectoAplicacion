@@ -9,7 +9,7 @@ import lombok.Setter;
 
 import java.sql.Time;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
+
 
 @Entity
 @Getter
@@ -24,7 +24,7 @@ public class Reserva {
     private Date fecha;
 
     @Column(name = "hora", nullable = false)
-    private Date hora ;
+    private Time hora ;
 
     @Column(name = "cant_personas", nullable = false)
     private Integer cant_personas;
