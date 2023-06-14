@@ -1,4 +1,6 @@
 package com.mezza.app.controllers;
+import com.mezza.app.dtos.AdminLoginDTO;
+import com.mezza.app.dtos.AdminRegisterDTO;
 import com.mezza.app.models.*;
 import com.mezza.app.services.AdministradorServices;
 import org.springframework.beans.factory.annotation.Autowired;

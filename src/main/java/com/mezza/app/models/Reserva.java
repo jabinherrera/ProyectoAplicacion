@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.sql.Date;
+import java.time.LocalTime;
 
 
 @Entity
@@ -20,7 +21,7 @@ public class Reserva {
     private Date fecha;
 
     @Column(name = "hora"/*, nullable = false*/)
-    private String hora ;
+    private LocalTime hora ;
 
     @Column(name = "cant_personas"/*, nullable = false*/)
     private Integer cant_personas;
