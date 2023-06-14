@@ -1,6 +1,7 @@
 package com.mezza.app.controllers;
 
 import com.mezza.app.models.Reserva;
+import com.mezza.app.repositories.ReservaRepository;
 import com.mezza.app.services.ReservaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ public class ReservaControllers {
 
     @Autowired
     private ReservaServices reservaServices;
+    private ReservaRepository reservaRepository;
 
     @GetMapping("/reserva/guardar")
     public String reservar(Model model) {
@@ -22,7 +24,7 @@ public class ReservaControllers {
 
     @PostMapping("/reserva/guardar")
     public String guardarReserva(@ModelAttribute Reserva reservaForm) {
-        reservaServices.guardar(reservaForm);
+        reservaRepository.save(reservaForm);
         return "reserva-redirect";
     }
 

@@ -59,28 +59,28 @@
                             <label style="color: white" >Hora</label>
                             <input  th:field="*{hora}" type="time" id="horaInput" class="form-control text-center" placeholder="00:00" min="09:00" max="20:00" onchange="formatoHora()" required>
                             <!--<datalist id="horas">
-                                <option value="09:00"></option>
-                                <option value="09:30"></option>
-                                <option value="10:00"></option>
-                                <option value="10:30"></option>
-                                <option value="11:00"></option>
-                                <option value="11:30"></option>
-                                <option value="12:00"></option>
-                                <option value="12:30"></option>
-                                <option value="13:00"></option>
-                                <option value="13:30"></option>
-                                <option value="14:00"></option>
-                                <option value="14:30"></option>
-                                <option value="15:00"></option>
-                                <option value="15:30"></option>
-                                <option value="16:00"></option>
-                                <option value="16:30"></option>
-                                <option value="17:00"></option>
-                                <option value="17:30"></option>
-                                <option value="18:00"></option>
-                                <option value="18:30"></option>
-                                <option value="19:00"></option>
-                                <option value="19:30"></option>
+                                <option value="09:00:00"></option>
+                                <option value="09:30:00"></option>
+                                <option value="10:00:00"></option>
+                                <option value="10:30:00"></option>
+                                <option value="11:00:00"></option>
+                                <option value="11:30:00"></option>
+                                <option value="12:00:00"></option>
+                                <option value="12:30:00"></option>
+                                <option value="13:00:00"></option>
+                                <option value="13:30:00"></option>
+                                <option value="14:00:00"></option>
+                                <option value="14:30:00"></option>
+                                <option value="15:00:00"></option>
+                                <option value="15:30:00"></option>
+                                <option value="16:00:00"></option>
+                                <option value="16:30:00"></option>
+                                <option value="17:00:00"></option>
+                                <option value="17:30:00"></option>
+                                <option value="18:00:00"></option>
+                                <option value="18:30:00"></option>
+                                <option value="19:00:00"></option>
+                                <option value="19:30:00"></option>
                             </datalist>-->
                         </div>
                         <div class="col">
@@ -109,7 +109,8 @@
 </div>
 </body>
 <script>
-    datePickerId.min = new Date().toISOString().split("T")[0];
+
+datePickerId.min = new Date().toISOString().split("T")[0];
 
 function formatoHora() {
   const input = document.getElementById('horaInput');

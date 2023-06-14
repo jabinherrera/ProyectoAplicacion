@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -25,12 +26,12 @@ public class AdministradorControllers {
     }
 
     @GetMapping("login")
-    public ResponseEntity<?> login(@RequestBody AdminLoginDTO adminLoginDTO) {
+    public String login(@RequestBody AdminLoginDTO adminLoginDTO) {
         try {
             Administrador admin = adminServices.Logear(adminLoginDTO);
-            return ResponseEntity.accepted().body(admin);
+            return "redirect:/dashboard";
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return "ERROR";
         }
     }
 
@@ -55,5 +56,11 @@ public class AdministradorControllers {
         }
         return ResponseEntity.status(HttpStatus.OK).body("Administrador eliminado correctamente");
 
+    }
+
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) {
+        model.addAttribute("reservaForm", new Reserva());
+        return "dashboard";
     }
 }
