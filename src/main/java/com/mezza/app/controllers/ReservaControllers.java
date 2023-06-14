@@ -10,22 +10,28 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
+@RequestMapping("/")
 public class ReservaControllers {
 
     @Autowired
     private ReservaServices reservaServices;
     private ReservaRepository reservaRepository;
 
-    @GetMapping("/reserva/guardar")
+    @GetMapping()
+    public String Home() {
+        return "redirect:reserva/guardar";
+    }
+
+    @GetMapping("reserva/guardar")
     public String reservar(Model model) {
         model.addAttribute("reservaForm", new Reserva());
         return "reserva";
     }
 
     @PostMapping("/reserva/guardar")
-    public String guardarReserva(@ModelAttribute Reserva reservaForm) {
-        reservaRepository.save(reservaForm);
-        return "reserva-redirect";
+    public String guardarReserva(Reserva reserva) {
+        reservaServices.guardar(reserva);
+        return "redirect:/reserva-redirect";
     }
 
 }

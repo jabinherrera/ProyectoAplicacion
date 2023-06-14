@@ -3,8 +3,6 @@ package com.mezza.app.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.sql.Time;
 import java.sql.Date;
 
 
@@ -15,14 +13,14 @@ import java.sql.Date;
 public class Reserva {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_Reserva;
 
     @Column(name = "fecha"/*, nullable = false*/)
     private Date fecha;
 
     @Column(name = "hora"/*, nullable = false*/)
-    private Time hora ;
+    private String hora ;
 
     @Column(name = "cant_personas"/*, nullable = false*/)
     private Integer cant_personas;

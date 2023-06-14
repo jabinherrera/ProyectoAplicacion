@@ -13,6 +13,7 @@ import lombok.*;
 public class Administrador {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column (name="email", nullable = false)
