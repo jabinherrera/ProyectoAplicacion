@@ -107,7 +107,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Formulario-->
-                    <form th:object="${adminForm}" method="post" th:action="@{/admin/registrarAdmin/">
+                    <form th:object="${adminRegisterForm}" method="post" th:action="@{/admin/registrarAdmin/">
                         <div class="mb-3">
                             <label>Email</label>
                             <input type="text" th:field="*{email}" class="form-control" placeholder="Ingrese email"/>
@@ -145,7 +145,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Formulario-->
-                    <form th:object="${FriendForm}" method="post" th:action="@{'/user/friendUpdate/' + ${id}}">
+                    <form th:object="${adminEditForm}" method="post" th:action="@{'/user/friendUpdate/' + ${id}}">
                         <input type="hidden" id="editId" name="id" th:field="*{id}" />
                         <div class="mb-3">
                             <label>Nombre</label>

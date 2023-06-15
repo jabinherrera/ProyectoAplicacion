@@ -17,14 +17,15 @@ public class AdministradorControllers {
     @Autowired
     private AdministradorServices adminServices;
 
-    @GetMapping("/dashboard")
+    @GetMapping("admin/dashboard")
     public String dashboard() {
         return "dashboard";
     }
 
-    @PostMapping("registrar")
-    public ResponseEntity<?> registrar(@RequestBody AdminRegisterDTO adminRegisterDTO) {
+    @PostMapping("admin/registrar")
+    public ResponseEntity<?> registrar(@RequestBody AdminRegisterDTO adminRegisterDTO, Model model) {
         try {
+            model.addAttribute("adminRegisterForm", new Administrador());
             adminServices.Registrar(adminRegisterDTO);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -32,10 +33,10 @@ public class AdministradorControllers {
         return ResponseEntity.status(HttpStatus.CREATED).body("Administrador registrado exitosamente");
     }
 
-    @GetMapping("login")
+    @GetMapping("admin/login")
     public String login(@RequestBody AdminLoginDTO adminLoginDTO, Model model) {
         try {
-            model.addAttribute("loginForm", new Administrador());
+            model.addAttribute("adminLoginForm");
             Administrador admin = adminServices.Logear(adminLoginDTO);
             return "redirect:/dashboard";
         } catch (Exception e) {
@@ -43,9 +44,10 @@ public class AdministradorControllers {
         }
     }
 
-    @PutMapping("editar/{id}")
-    public ResponseEntity<?> editar(@RequestBody Administrador adminInfo, @PathVariable Long id) {
+    @PutMapping("admin/editar/{id}")
+    public ResponseEntity<?> editar(@RequestBody Administrador adminInfo, @PathVariable Long id, Model model) {
         try {
+            model.addAttribute("adminEditForm");
             adminServices.editarAdministrador(adminInfo, id);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -55,7 +57,7 @@ public class AdministradorControllers {
     }
 
 
-    @DeleteMapping ("eliminar/{email}")
+    @DeleteMapping ("admin/eliminar/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) {
         try {
             adminServices.eliminarAdministrador(id);
