@@ -17,6 +17,11 @@ public class AdministradorControllers {
     @Autowired
     private AdministradorServices adminServices;
 
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "dashboard";
+    }
+
     @PostMapping("registrar")
     public ResponseEntity<?> registrar(@RequestBody AdminRegisterDTO adminRegisterDTO) {
         try {
@@ -28,8 +33,9 @@ public class AdministradorControllers {
     }
 
     @GetMapping("login")
-    public String login(@RequestBody AdminLoginDTO adminLoginDTO) {
+    public String login(@RequestBody AdminLoginDTO adminLoginDTO, Model model) {
         try {
+            model.addAttribute("loginForm", new Administrador());
             Administrador admin = adminServices.Logear(adminLoginDTO);
             return "redirect:/dashboard";
         } catch (Exception e) {
@@ -58,11 +64,5 @@ public class AdministradorControllers {
         }
         return ResponseEntity.status(HttpStatus.OK).body("Administrador eliminado correctamente");
 
-    }
-
-    @GetMapping("/dashboard")
-    public String dashboard(Model model) {
-        model.addAttribute("reservaForm", new Reserva());
-        return "dashboard";
     }
 }
