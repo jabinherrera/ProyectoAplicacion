@@ -1,4 +1,4 @@
-package com.mezza.app.models;
+package com.mezza.app.dtos;
 
 import lombok.*;
 
