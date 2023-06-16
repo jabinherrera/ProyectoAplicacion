@@ -49,7 +49,7 @@ public class AdministradorControllers {
 
     @GetMapping("admin/next_day_admin")
     public String nextDayAdmin() {
-        return "next-day-admin";
+        return "nextdays-admin";
     }
 
     @PostMapping("admin/registrar")
