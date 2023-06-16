@@ -19,7 +19,7 @@ public class AdministradorControllers {
 
     @GetMapping("admin/dashboard")
     public String dashboard() {
-        return "dashboard";
+        return "dashboard-admin";
     }
 
     @PostMapping("admin/registrar")

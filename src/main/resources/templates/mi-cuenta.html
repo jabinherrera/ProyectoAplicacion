@@ -15,32 +15,32 @@
 <body style="background-color: #FFFFFF;">
 
 <div class="row row-cols-auto justify-content-center" style="background-color:#C7C4C4;">
-    <a href="dashboard-admin.html" th:href><img class="col rounded-4 float-start my-2 me-auto ms-3" src="/static/img/logomezza.png" height="60" width="60" th:src></a>
+    <a th:href="dashboard-admin.html"><img class="col rounded-4 float-start my-2 me-auto ms-3" src="/static/img/logomezza.png" height="60" width="60" th:src></a>
 
     <nav class="col-8 text-end my-auto">
         <div class="container-sm">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">Mi Cuenta</button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel" th:text>Mi Cuenta</h5>
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Mi Cuenta</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" th:list>
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" >
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="mi-cuenta.html" th:href>Mi Cuenta</a>
+                            <a class="nav-link active" aria-current="page" th:href="mi-cuenta.html" >Mi Cuenta</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="administrar-usuarios.html" th:href>Administrar Usuarios</a>
+                            <a class="nav-link active" aria-current="page" th:href="administrar-usuarios.html">Administrar Usuarios</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="mi-restaurant.html" th:href>Mi restaurant</a>
+                            <a class="nav-link active" aria-current="page" th:href="mi-restaurant.html">Mi restaurant</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="login-admin.html" th:href>Cerrar Sesión</a>
+                            <a class="nav-link active" aria-current="page" th:href="login-admin.html" >Cerrar Sesión</a>
                         </li>
 
                     </ul>
@@ -48,11 +48,11 @@
             </div>
         </div>
     </nav>
-    <img class="col rounded-circle float-end my-2 ms-0 me-3" src="/static/img/user-profile.jpg" height="60" th:src>
+    <img class="col rounded-circle float-end my-2 ms-0 me-3" th:src="@{../img/user-profile.jpg}" height="60">
 </div>
 
 <div class="text-center my-3">
-    <img src="/static/img/user-profile.jpg" class="rounded-circle border border-dark" alt="..." th:src>
+    <img th:src="@{../img/user-profile.jpg}" class="rounded-circle border border-dark" alt="...">
 </div>
 
 <div class="container m-auto">
@@ -60,17 +60,17 @@
         <tbody>
         <tr>
             <th></th>
-            <td th:text>Administrador</td>
+            <td >Administrador</td>
             <td><button class="btn">Editar</button></td>
         </tr>
         <tr>
             <th></th>
-            <td th:text>Administrador@gmail.cl</td>
+            <td>Administrador@gmail.cl</td>
             <td><button class="btn">Editar</button></td>
         </tr>
         <tr>
             <th></th>
-            <td th:text>Contraseña</td>
+            <td >Contraseña</td>
             <td><button class="btn">Editar</button></td>
         </tr>
         </tbody>

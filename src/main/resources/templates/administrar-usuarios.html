@@ -19,7 +19,7 @@
 
     <nav class="col-8 text-end my-auto">
         <div class="container-sm">
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">Mi Cuenta</button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">Administrador</button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasNavbarLabel" th:text>Mi Cuenta</h5>
@@ -48,13 +48,12 @@
             </div>
         </div>
     </nav>
-    <img class="col rounded-circle float-end my-2 ms-0 me-3" src="../static/img/user-profile.jpg" height="60" th:src>
+    <img class="col rounded-circle float-end my-2 ms-0 me-3" th:src="${../img/user-profile.jpg}" height="60" >
 </div>
 
 <div class="container">
     <div class="mt-4 text-center">
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registrarUsuario"> Agrear Nuevo
-            Usuario</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registrarAdmin"> Agregar Administrador</button>
     </div>
     <div class="row mt-5">
         <div class="col-12 text-center">
@@ -118,11 +117,11 @@
                         </div>
                         <div class="mb-3">
                             <label>Apellido</label>
-                            <input type="date" class="form-control" th:field="*{apellido}" placeholder="Ingrese apellido"/>
+                            <input type="text" class="form-control" th:field="*{apellido}" placeholder="Ingrese apellido"/>
                         </div>
                         <div class="mb-3">
                             <label>Contraseña provisoria</label>
-                            <input type="date" class="form-control" th:field="*{apellido}" placeholder="Ingrese apellido"/>
+                            <input type="text" class="form-control" th:field="*{apellido}" placeholder="Ingrese apellido"/>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">Registrar Usuario</button>
@@ -202,28 +201,28 @@
         crossorigin="anonymous"></script>
 </body>
 <script>
-    let idFriend;
+    let idAdmin;
     let actualUser;
 
-    function editarUsuario(id, nombre, apellido, fechaNacimiento) {
+    function editarUsuario(id, email, nombre, apellido) {
+        document.getElementById('editEmail').value = email;
         document.getElementById('editNombre').value = nombre;
         document.getElementById('editApellido').value = apellido;
-        document.getElementById('editFechaNacimiento').value = fechaNacimiento.toString().substring(0,10);
         document.getElementById('editId').value = id;
     }
 
-    function selectUser(friend,id){
-        idFriend = friend;
+    function selectUser(admin,id){
+        idAdmin = admin;
         actualUser = id;
     }
 
     function deleteUser(){
-        fetch('/user/friendDelete/' + actualUser + "/" + idFriend, {
+        fetch('admin/eliminar/+ idAdmin, {
             method: 'DELETE',
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Error al eliminar usuario');
+                    throw new Error('Ocurrio un error al eliminar el usuario');
                 }
                 return response.text();
             })
