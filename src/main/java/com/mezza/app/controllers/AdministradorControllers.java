@@ -22,6 +22,36 @@ public class AdministradorControllers {
         return "dashboard-admin";
     }
 
+    @GetMapping("admin/mi_cuenta")
+    public String miCuenta() {
+        return "mi-cuenta";
+    }
+
+    @GetMapping("admin/administrar_usuarios")
+    public String administrarUsuarios() {
+        return "administrar-usuarios";
+    }
+
+    @GetMapping("admin/mi_restaurant")
+    public String miRestaurant() {
+        return "mi-restaurant";
+    }
+
+    @GetMapping("admin/today_admin")
+    public String todayAdmin() {
+        return "today-admin";
+    }
+
+    @GetMapping("admin/tomorrow_admin")
+    public String tomorrowAdmin() {
+        return "tomorrow-admin";
+    }
+
+    @GetMapping("admin/next_day_admin")
+    public String nextDayAdmin() {
+        return "next-day-admin";
+    }
+
     @PostMapping("admin/registrar")
     public ResponseEntity<?> registrar(@RequestBody AdminRegisterDTO adminRegisterDTO, Model model) {
         try {
