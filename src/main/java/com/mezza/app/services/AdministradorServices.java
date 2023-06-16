@@ -7,6 +7,7 @@ import com.mezza.app.repositories.AdministradorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -71,5 +72,9 @@ public class AdministradorServices {
         if (adminRegisterDTO.getContrasena() == null) throw new Exception("Contraseña no ingresado");
         if (adminRegisterDTO.getNombre() == null) throw new Exception("Nombre no ingresada");
         if (adminRegisterDTO.getApellido() == null) throw new Exception("Apellido no ingresado");
+    }
+
+    public List<Administrador> mostrarAdmins() {
+        return administradorRepository.findAll();
     }
 }

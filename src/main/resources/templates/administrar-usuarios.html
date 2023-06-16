@@ -106,7 +106,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Formulario-->
-                    <form th:object="${adminRegisterForm}" method="post" th:action="@{/admin/registrarAdmin/">
+                    <form th:object="${adminRegisterForm}" method="post" th:action="@{/admin/administrar_usuarios}">
                         <div class="mb-3">
                             <label>Email</label>
                             <input type="text" th:field="*{email}" class="form-control" placeholder="Ingrese email"/>
@@ -121,7 +121,7 @@
                         </div>
                         <div class="mb-3">
                             <label>Contraseña provisoria</label>
-                            <input type="text" class="form-control" th:field="*{apellido}" placeholder="Ingrese apellido"/>
+                            <input type="text" class="form-control" th:field="*{contrasena}" placeholder="Ingrese contraseña provisoria"/>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">Registrar Usuario</button>
