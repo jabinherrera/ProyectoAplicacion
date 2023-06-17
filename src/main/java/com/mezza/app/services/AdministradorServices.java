@@ -48,9 +48,7 @@ public class AdministradorServices {
 
     public void editarAdministrador(Administrador adminInfo, Long id) {
         Administrador admin = administradorRepository.findById(id).get();
-
         admin.setEmail(adminInfo.getEmail());
-        admin.setContrasena(adminInfo.getContrasena());
         admin.setNombre(adminInfo.getNombre());
         admin.setApellido(adminInfo.getApellido());
 
