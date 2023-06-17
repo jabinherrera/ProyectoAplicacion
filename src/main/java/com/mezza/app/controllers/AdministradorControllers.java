@@ -6,6 +6,7 @@ import com.mezza.app.models.*;
 import com.mezza.app.repositories.AdministradorRepository;
 import com.mezza.app.services.AdministradorServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -67,6 +68,7 @@ public class AdministradorControllers {
         return "administrar-usuarios";
     }
 
+
     @PostMapping("admin/administrar_usuarios/registrar")
     public String agregarAdministrador(AdminRegisterDTO adminRegisterDTO) {
         try {
@@ -74,7 +76,7 @@ public class AdministradorControllers {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return "redirect:/administrar-usuarios";
+        return "redirect:/admin/administrar_usuarios";
     }
 
 //    @GetMapping("admin/login")
@@ -89,22 +91,24 @@ public class AdministradorControllers {
 //    }
 
     @PostMapping("admin/administrar_usuarios/editar/{id}")
-    public String editar(@RequestBody Administrador adminInfo, @PathVariable Long id) {
+    public String editarAdministrador(@RequestBody AdminRegisterDTO adminRegisterDTO, @PathVariable Long id, Model model) {
         try {
-            adminServices.editarAdministrador(adminInfo, id);
+            model.addAttribute("adminEditForm", new Administrador());
+            adminServices.editarAdministrador(adminRegisterDTO, id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return "redirect:/administrar-usuarios";
+        return "redirect:/admin/administrar_usuarios";
     }
 
-    @DeleteMapping ("admin//administrar_usuarios/eliminar/{id}")
-    public String eliminar(@PathVariable Long id) {
+    @PostMapping ("admin/administrar_usuarios/eliminar/{id}")
+    public String eliminarAdministrador(@PathVariable Long id, Model model) {
         try {
+            model.addAttribute("adminDeleteForm");
             adminServices.eliminarAdministrador(id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return "redirect:/administrar-usuarios";
+        return "redirect:/admin/administrar_usuarios";
     }
 }

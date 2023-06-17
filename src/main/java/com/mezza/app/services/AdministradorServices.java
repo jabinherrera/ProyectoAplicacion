@@ -50,11 +50,11 @@ public class AdministradorServices {
     }
 
 
-    public void editarAdministrador(Administrador adminInfo, Long id) {
+    public void editarAdministrador(AdminRegisterDTO adminRegisterDTO, Long id) {
         Administrador admin = administradorRepository.findById(id).get();
-        admin.setEmail(adminInfo.getEmail());
-        admin.setNombre(adminInfo.getNombre());
-        admin.setApellido(adminInfo.getApellido());
+        admin.setEmail(adminRegisterDTO.getEmail());
+        admin.setNombre(adminRegisterDTO.getNombre());
+        admin.setApellido(adminRegisterDTO.getApellido());
 
         administradorRepository.save(admin);
     }

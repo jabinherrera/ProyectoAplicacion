@@ -88,8 +88,6 @@
                                 data-bs-toggle="modal"
                                 data-bs-target="#eliminarAdmin" th:data-idAdmin="${admin.id}" th:data-actualUser="${id}" onclick="selectUser(this.getAttribute('data-idAdmin'),this.getAttribute('data-actualUser'))" >Eliminar</button>
                     </td>
-
-
                 </tr>
                 </tbody>
             </table>
@@ -106,14 +104,14 @@
                 </div>
                 <div class="modal-body">
                     <!-- Formulario-->
-                    <form class="needs-validation" target="_self" method="POST" th:action="@{/admin/administrar_usuarios}" th:object="${adminRegisterForm}" onsubmit="setTimeout(function(){window.location.reload();},10);">
+                    <form class="needs-validation" method="post" th:action="@{/admin/administrar_usuarios/registrar}" th:object="${adminRegisterForm}">
                         <div class="mb-3">
                             <label>Email</label>
-                            <input type="text" th:field="*{email}" class="form-control" placeholder="Ingrese email" required/>
+                            <input type="text" class="form-control" th:field="*{email}" placeholder="Ingrese email" required/>
                         </div>
                         <div class="mb-3">
                             <label>Nombre</label>
-                            <input type="text" class="form-control" data-uplastname="" th:field="*{nombre}" placeholder="Ingrese nombre" required/>
+                            <input type="text" class="form-control" th:field="*{nombre}" placeholder="Ingrese nombre" required/>
                         </div>
                         <div class="mb-3">
                             <label>Apellido</label>
@@ -124,8 +122,8 @@
                             <input type="text" class="form-control" th:field="*{contrasena}" placeholder="Ingrese contraseña provisoria" required/>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" >Registrar Usuario</button>
-                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" >Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Registrar Usuario</button>
+                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         </div>
                     </form>
                 </div>
@@ -144,7 +142,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Formulario-->
-                    <form th:object="${adminEditForm}" method="post" th:action="@{'/admin/editar/' + ${id}}" onsubmit="setTimeout(function(){window.location.reload();},10);">
+                    <form th:object="${adminEditForm}" method="post" th:action="@{/admin/administrar_usuarios/editar/ + ${admin.id}}">
                         <input type="hidden" id="editId" name="id" th:field="*{id}" />
                         <div class="mb-3">
                             <label>Email</label>
@@ -159,7 +157,7 @@
                             <input type="text" th:field="*{apellido}" class="form-control" id="editApellido" placeholder="Apellido">
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success" onclick="editarAdmin()">Guardar Cambios</button>
+                            <button type="submit" class="btn btn-success">Guardar Cambios</button>
                             <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         </div>
                     </form>
@@ -171,8 +169,7 @@
     </div>
 
     <!-- eliminar -->
-    <div class="modal fade" id="eliminarAdmin" tabindex="-1" aria-labelledby="eliminarAdminLabel"
-         aria-hidden="true">
+    <div class="modal fade" id="eliminarAdmin" tabindex="-1" aria-labelledby="eliminarAdminLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -182,8 +179,8 @@
                     <h4>¿Seguro que quieres eliminar este usuario?</h4>
                 </div>
                 <div class="modal-footer">
-                    <form id="adminDeleteForm" method="post" onsubmit="setTimeout(function(){window.location.reload();},10);">
-                        <button type="submit" class="btn btn-danger" onclick="eliminarAdmin()" >Eliminar Usuario</button>
+                    <form th:object="${adminDeleteForm}" method="post" th:action="@{/admin/administrar_usuarios/eliminar/ + ${admin.id}}">
+                        <button type="submit" class="btn btn-danger" >Eliminar Usuario</button>
                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </form>
                 </div>
@@ -202,7 +199,7 @@
 </body>
 <script>
     let idAdmin;
-    let actualUser;
+    let actualAdmin;
 
     function editarAdmin(id, email, nombre, apellido) {
         document.getElementById('editEmail').value = email;
@@ -211,27 +208,15 @@
         document.getElementById('editId').value = id;
     }
 
-    function selectUser(admin,id){
-        idAdmin = admin;
-        actualUser = id;
+    function selectAdmin(admin,id){
+        idAdmin = id;
+        actualAdmin = admin;
     }
 
     function eliminarAdmin(){
-        fetch('admin/eliminar/+ idAdmin, {
+        fetch('admin/administrar_usuarios/eliminar/ + idAdmin, {
             method: 'DELETE',
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Ocurrio un error al eliminar el usuario');
-                }
-                return response.text();
-            })
-            .then(() => {
-                location.reload();
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
     }
 
 </script>
