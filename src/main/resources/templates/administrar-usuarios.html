@@ -135,7 +135,7 @@
     </div>
 
     <!-- Modal Editar Usuario-->
-    <div class="modal fade" id="editarUsuario" tabindex="-1" aria-labelledby="editarUsuarioLabel"
+    <div class="modal fade" id="editarAdmin" tabindex="-1" aria-labelledby="editarAdminLabel"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -148,7 +148,7 @@
                         <input type="hidden" id="editId" name="id" th:field="*{id}" />
                         <div class="mb-3">
                             <label>Email</label>
-                            <input type="text" th:field="*{email}" class="form-control" id="editEmail" placeholder="Email">
+                            <input type="text" th:field="*{email}" class="form-control" id="editEmail" th:placeholder="Email">
                         </div>
                         <div class="mb-3">
                             <label>Nombre</label>
@@ -204,7 +204,7 @@
     let idAdmin;
     let actualUser;
 
-    function editarUsuario(id, email, nombre, apellido) {
+    function editarAdmin(id, email, nombre, apellido) {
         document.getElementById('editEmail').value = email;
         document.getElementById('editNombre').value = nombre;
         document.getElementById('editApellido').value = apellido;
