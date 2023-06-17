@@ -22,8 +22,12 @@ public class AdministradorServices {
 
         verificarDatos(adminRegisterDTO);
         verificarEmail(adminRegisterDTO.getEmail());
+        admin.setApellido(adminRegisterDTO.getApellido());
+        admin.setNombre(adminRegisterDTO.getNombre());
         admin.setEmail(adminRegisterDTO.getEmail());
         admin.setContrasena(adminRegisterDTO.getContrasena());
+
+
 
         administradorRepository.save(admin);
     }
@@ -57,7 +61,7 @@ public class AdministradorServices {
 
     public void eliminarAdministrador(Long id) {
 
-        administradorRepository.deleteById(id);
+        administradorRepository.delete(administradorRepository.findById(id).get());
     }
 
 

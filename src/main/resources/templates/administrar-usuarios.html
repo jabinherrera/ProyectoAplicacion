@@ -86,7 +86,7 @@
                         </button>
                         <button class="btn btn-danger"
                                 data-bs-toggle="modal"
-                                data-bs-target="#eliminarUsuario" th:data-idAdmin="${admin.id}" th:data-actualUser="${id}" onclick="selectUser(this.getAttribute('data-idAdmin'),this.getAttribute('data-actualUser'))" >Eliminar</button>
+                                data-bs-target="#eliminarAdmin" th:data-idAdmin="${admin.id}" th:data-actualUser="${id}" onclick="selectUser(this.getAttribute('data-idAdmin'),this.getAttribute('data-actualUser'))" >Eliminar</button>
                     </td>
 
 
@@ -106,25 +106,25 @@
                 </div>
                 <div class="modal-body">
                     <!-- Formulario-->
-                    <form th:object="${adminRegisterForm}" method="post" th:action="@{/admin/administrar_usuarios}">
+                    <form class="needs-validation" target="_self" method="POST" th:action="@{/admin/administrar_usuarios}" th:object="${adminRegisterForm}" onsubmit="setTimeout(function(){window.location.reload();},10);">
                         <div class="mb-3">
                             <label>Email</label>
-                            <input type="text" th:field="*{email}" class="form-control" placeholder="Ingrese email"/>
+                            <input type="text" th:field="*{email}" class="form-control" placeholder="Ingrese email" required/>
                         </div>
                         <div class="mb-3">
                             <label>Nombre</label>
-                            <input type="text" class="form-control" data-uplastname="" th:field="*{nombre}" placeholder="Ingrese nombre"/>
+                            <input type="text" class="form-control" data-uplastname="" th:field="*{nombre}" placeholder="Ingrese nombre" required/>
                         </div>
                         <div class="mb-3">
                             <label>Apellido</label>
-                            <input type="text" class="form-control" th:field="*{apellido}" placeholder="Ingrese apellido"/>
+                            <input type="text" class="form-control" th:field="*{apellido}" placeholder="Ingrese apellido" required/>
                         </div>
                         <div class="mb-3">
                             <label>Contraseña provisoria</label>
-                            <input type="text" class="form-control" th:field="*{contrasena}" placeholder="Ingrese contraseña provisoria"/>
+                            <input type="text" class="form-control" th:field="*{contrasena}" placeholder="Ingrese contraseña provisoria" required/>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">Registrar Usuario</button>
+                            <button type="submit" class="btn btn-primary" >Registrar Usuario</button>
                             <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" >Cancelar</button>
                         </div>
                     </form>
@@ -144,7 +144,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Formulario-->
-                    <form th:object="${adminEditForm}" method="put" th:action="@{'/admin/editar/' + ${id}}">
+                    <form th:object="${adminEditForm}" method="post" th:action="@{'/admin/editar/' + ${id}}" onsubmit="setTimeout(function(){window.location.reload();},10);">
                         <input type="hidden" id="editId" name="id" th:field="*{id}" />
                         <div class="mb-3">
                             <label>Email</label>
@@ -159,8 +159,8 @@
                             <input type="text" th:field="*{apellido}" class="form-control" id="editApellido" placeholder="Apellido">
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">Guardar Cambios</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success" onclick="editarAdmin()">Guardar Cambios</button>
+                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         </div>
                     </form>
 
@@ -171,7 +171,7 @@
     </div>
 
     <!-- eliminar -->
-    <div class="modal fade" id="eliminarUsuario" tabindex="-1" aria-labelledby="eliminarUsuarioLabel"
+    <div class="modal fade" id="eliminarAdmin" tabindex="-1" aria-labelledby="eliminarAdminLabel"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -182,9 +182,9 @@
                     <h4>¿Seguro que quieres eliminar este usuario?</h4>
                 </div>
                 <div class="modal-footer">
-                    <form id="deleteForm" method="post" >
-                        <button type="button" class="btn btn-danger" onclick="deleteUser()" >Eliminar Usuario</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form id="adminDeleteForm" method="post" onsubmit="setTimeout(function(){window.location.reload();},10);">
+                        <button type="submit" class="btn btn-danger" onclick="eliminarAdmin()" >Eliminar Usuario</button>
+                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </form>
                 </div>
             </div>
@@ -216,7 +216,7 @@
         actualUser = id;
     }
 
-    function deleteUser(){
+    function eliminarAdmin(){
         fetch('admin/eliminar/+ idAdmin, {
             method: 'DELETE',
         })

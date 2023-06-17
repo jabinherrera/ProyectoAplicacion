@@ -111,12 +111,5 @@
 
 datePickerId.min = new Date().toISOString().split("T")[0];
 
-function formatoHora() {
-  const input = document.getElementById('horaInput');
-  const hora = input.value.split(':'); // Separar la hora en horas y minutos
-  const horaFormateada = hora[0].padStart(2, '0') + ':' + hora[1].padStart(2, '0'); // Formatear la hora
-  input.value = horaFormateada; // Actualizar el valor del input
-}
-
 </script>
 </html>

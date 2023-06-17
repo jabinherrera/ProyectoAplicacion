@@ -62,18 +62,19 @@ public class AdministradorControllers {
     public String administrarUsuarios(Model model) {
         model.addAttribute("admins", adminServices.mostrarAdmins());
         model.addAttribute("adminRegisterForm", new Administrador());
-        model.addAttribute("adminEditForm");
+        model.addAttribute("adminEditForm", new Administrador());
+        model.addAttribute("adminDeleteForm");
         return "administrar-usuarios";
     }
 
-    @PostMapping("/admin/administrar_usuarios")
+    @PostMapping("admin/administrar_usuarios/registrar")
     public String agregarAdministrador(AdminRegisterDTO adminRegisterDTO) {
         try {
             adminServices.Registrar(adminRegisterDTO);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return "redirect:/administrar_usuarios";
+        return "redirect:/administrar-usuarios";
     }
 
 //    @GetMapping("admin/login")
@@ -87,23 +88,23 @@ public class AdministradorControllers {
 //        }
 //    }
 
-    @PutMapping("admin/editar/{id}")
+    @PostMapping("admin/administrar_usuarios/editar/{id}")
     public String editar(@RequestBody Administrador adminInfo, @PathVariable Long id) {
         try {
             adminServices.editarAdministrador(adminInfo, id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return "redirect:/administrar_usuarios";
+        return "redirect:/administrar-usuarios";
     }
 
-    @DeleteMapping ("admin/eliminar/{id}")
+    @DeleteMapping ("admin//administrar_usuarios/eliminar/{id}")
     public String eliminar(@PathVariable Long id) {
         try {
             adminServices.eliminarAdministrador(id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return "redirect:/administrar_usuarios";
+        return "redirect:/administrar-usuarios";
     }
 }
