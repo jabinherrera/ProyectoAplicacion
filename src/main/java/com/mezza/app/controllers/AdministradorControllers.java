@@ -61,6 +61,7 @@ public class AdministradorControllers {
     public String administrarUsuarios(Model model) {
         model.addAttribute("admins", adminServices.mostrarAdmins());
         model.addAttribute("adminRegisterForm", new Administrador());
+        model.addAttribute("adminEditForm");
         return "administrar-usuarios";
     }
 
@@ -88,16 +89,14 @@ public class AdministradorControllers {
 //    }
 
     @PutMapping("admin/editar/{id}")
-    public ResponseEntity<?> editar(@RequestBody Administrador adminInfo, @PathVariable Long id, Model model) {
+    public ResponseEntity<?> editar(@RequestBody Administrador adminInfo, @PathVariable Long id) {
         try {
-            model.addAttribute("adminEditForm");
             adminServices.editarAdministrador(adminInfo, id);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ResponseEntity.status(HttpStatus.OK).body("Datos editados correctamente");
     }
-
 
     @DeleteMapping ("admin/eliminar/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id) {

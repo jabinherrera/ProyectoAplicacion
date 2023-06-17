@@ -144,19 +144,19 @@
                 </div>
                 <div class="modal-body">
                     <!-- Formulario-->
-                    <form th:object="${adminEditForm}" method="post" th:action="@{'/user/friendUpdate/' + ${id}}">
+                    <form th:object="${adminEditForm}" method="put" th:action="@{'/admin/editar/' + ${id}}">
                         <input type="hidden" id="editId" name="id" th:field="*{id}" />
                         <div class="mb-3">
+                            <label>Email</label>
+                            <input type="text" th:field="*{email}" class="form-control" id="editEmail" placeholder="Email">
+                        </div>
+                        <div class="mb-3">
                             <label>Nombre</label>
-                            <input type="text" th:field="*{name}" class="form-control" id="editNombre" placeholder="Cesar">
+                            <input type="text" th:field="*{nombre}" class="form-control" id="editNombre" placeholder="Nombre">
                         </div>
                         <div class="mb-3">
                             <label>Apellido</label>
-                            <input type="text" th:field="*{lastname}" class="form-control" id="editApellido" placeholder="Astudillo">
-                        </div>
-                        <div class="mb-3">
-                            <label>Fecha Nacimiento</label>
-                            <input type="date" th:field="*{birthday}" class="form-control" id="editFechaNacimiento" placeholder="06/06/2023">
+                            <input type="text" th:field="*{apellido}" class="form-control" id="editApellido" placeholder="Apellido">
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">Guardar Cambios</button>
