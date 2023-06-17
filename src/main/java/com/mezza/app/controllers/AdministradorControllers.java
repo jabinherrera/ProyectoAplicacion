@@ -3,6 +3,7 @@ import com.mezza.app.dtos.AdminLoginDTO;
 import com.mezza.app.dtos.AdminRegisterDTO;
 import com.mezza.app.dtos.ReservaDTO;
 import com.mezza.app.models.*;
+import com.mezza.app.repositories.AdministradorRepository;
 import com.mezza.app.services.AdministradorServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -67,13 +68,11 @@ public class AdministradorControllers {
 
     @PostMapping("/admin/administrar_usuarios")
     public String agregarAdministrador(AdminRegisterDTO adminRegisterDTO) {
-        Administrador administrador = new Administrador();
-
-        administrador.setEmail(adminRegisterDTO.getEmail());
-        administrador.setContrasena(adminRegisterDTO.getContrasena());
-        administrador.setNombre(adminRegisterDTO.getNombre());
-        administrador.setApellido(adminRegisterDTO.getApellido());
-
+        try {
+            adminServices.Registrar(adminRegisterDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         return "redirect:/administrar_usuarios";
     }
 
@@ -89,22 +88,22 @@ public class AdministradorControllers {
 //    }
 
     @PutMapping("admin/editar/{id}")
-    public ResponseEntity<?> editar(@RequestBody Administrador adminInfo, @PathVariable Long id) {
+    public String editar(@RequestBody Administrador adminInfo, @PathVariable Long id) {
         try {
             adminServices.editarAdministrador(adminInfo, id);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            throw new RuntimeException(e);
         }
-        return ResponseEntity.status(HttpStatus.OK).body("Datos editados correctamente");
+        return "redirect:/administrar_usuarios";
     }
 
     @DeleteMapping ("admin/eliminar/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable Long id) {
+    public String eliminar(@PathVariable Long id) {
         try {
             adminServices.eliminarAdministrador(id);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            throw new RuntimeException(e);
         }
-        return ResponseEntity.status(HttpStatus.OK).body("Administrador eliminado correctamente");
+        return "redirect:/administrar_usuarios";
     }
 }

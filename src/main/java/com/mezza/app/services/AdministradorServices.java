@@ -18,10 +18,10 @@ public class AdministradorServices {
     public AdministradorRepository administradorRepository;
 
     public void Registrar(AdminRegisterDTO adminRegisterDTO) throws Exception {
+        Administrador admin = new Administrador();
 
         verificarDatos(adminRegisterDTO);
         verificarEmail(adminRegisterDTO.getEmail());
-        Administrador admin = new Administrador();
         admin.setEmail(adminRegisterDTO.getEmail());
         admin.setContrasena(adminRegisterDTO.getContrasena());
 
@@ -48,6 +48,7 @@ public class AdministradorServices {
 
     public void editarAdministrador(Administrador adminInfo, Long id) {
         Administrador admin = administradorRepository.findById(id).get();
+
         admin.setEmail(adminInfo.getEmail());
         admin.setContrasena(adminInfo.getContrasena());
         admin.setNombre(adminInfo.getNombre());
