@@ -79,16 +79,16 @@ public class AdministradorControllers {
         return "redirect:/admin/administrar_usuarios";
     }
 
-//    @GetMapping("admin/login")
-//    public String login(@RequestBody AdminLoginDTO adminLoginDTO, Model model) {
-//        try {
-//            model.addAttribute("adminLoginForm");
-//            Administrador admin = adminServices.Logear(adminLoginDTO);
-//            return "redirect:/dashboard";
-//        } catch (Exception e) {
-//            return "ERROR";
-//        }
-//    }
+    @PostMapping("admin/login")
+    public String login(@RequestBody AdminLoginDTO adminLoginDTO, Model model) {
+        try {
+            model.addAttribute("adminLoginForm");
+            Administrador admin = adminServices.Logear(adminLoginDTO);
+            return "redirect:/dashboard";
+        } catch (Exception e) {
+            return "ERROR";
+        }
+    }
 
     @PostMapping("admin/administrar_usuarios/editar/{id}")
     public String editarAdministrador(@RequestBody AdminRegisterDTO adminRegisterDTO, @PathVariable Long id, Model model) {
