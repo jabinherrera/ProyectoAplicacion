@@ -67,7 +67,6 @@ public class AdministradorControllers {
     @PostMapping("/admin/login")
     public String login(AdminLoginDTO adminLoginDTO) {
         try {
-
             Administrador admin = adminServices.Logear(adminLoginDTO);
             return "redirect:admin/dashboard";
         } catch (Exception e) {
