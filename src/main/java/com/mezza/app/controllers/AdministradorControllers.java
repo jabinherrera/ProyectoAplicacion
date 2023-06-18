@@ -68,17 +68,6 @@ public class AdministradorControllers {
         return "administrar-usuarios";
     }
 
-
-    @PostMapping("admin/administrar_usuarios/registrar")
-    public String agregarAdministrador(AdminRegisterDTO adminRegisterDTO) {
-        try {
-            adminServices.Registrar(adminRegisterDTO);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return "redirect:/admin/administrar_usuarios";
-    }
-
     @PostMapping("admin/login")
     public String login(@RequestBody AdminLoginDTO adminLoginDTO, Model model) {
         try {
@@ -88,6 +77,16 @@ public class AdministradorControllers {
         } catch (Exception e) {
             return "ERROR";
         }
+    }
+
+    @PostMapping("admin/administrar_usuarios/registrar")
+    public String agregarAdministrador(AdminRegisterDTO adminRegisterDTO) {
+        try {
+            adminServices.Registrar(adminRegisterDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return "redirect:/admin/administrar_usuarios";
     }
 
     @PostMapping("admin/administrar_usuarios/editar/{id}")
