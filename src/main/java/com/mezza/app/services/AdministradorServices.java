@@ -65,7 +65,6 @@ public class AdministradorServices {
     }
 
     public void eliminarAdministrador(Long id) {
-
         administradorRepository.delete(administradorRepository.findById(id).get());
     }
 

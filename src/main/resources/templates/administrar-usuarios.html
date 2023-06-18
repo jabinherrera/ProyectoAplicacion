@@ -80,12 +80,11 @@
                                 th:data-email="${admin.email}"
                                 th:data-nombre="${admin.nombre}"
                                 th:data-apellido="${admin.apellido}"
-                                th:data-idAdmin="${admin.id}">
+                                th:data-idAdmin="${admin.id}"
+                                th:attr="data-adminID=${admin.id}">
                             Editar
                         </button>
-                        <button class="btn btn-danger"
-                                data-bs-toggle="modal"
-                                data-bs-target="#eliminarAdmin" th:data-idAdmin="${admin.id}" th:data-actualUser="${id}">Eliminar</button>
+                        <a th:href="@{/admin/administrar_usuarios/eliminar/{id}(id=${admin.id})}" class="btn btn-danger" >Eliminar</a>
                     </td>
                 </tr>
                 </tbody>
@@ -126,7 +125,6 @@
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
@@ -141,8 +139,8 @@
                 </div>
                 <div class="modal-body">
                     <!-- Formulario-->
-                    <form th:object="${adminEditForm}" method="post" th:action="@{/admin/administrar_usuarios/editar/{id}(id=${idAdmin})}">
-                        <input type="hidden" id="editId" name="id" th:field="*{id}" />
+                    <form th:object="${adminEditForm}" method="post" th:action="@{'/admin/administrar_usuarios/editar/' + ${adminID}}">
+                        <input type="hidden" id="adminID" name="id" th:field="*{id}" />
                         <div class="mb-3">
                             <label>Email</label>
                             <input type="text" th:field="*{email}" class="form-control" id="editEmail" th:placeholder="Email">
@@ -157,7 +155,7 @@
                         </div>
                         <div class="modal-footer">
                             <input value="Guardar Cambios" type="submit" class="btn btn-success"></input>
-                            <input value="Cancelar" type="reset" class="btn btn-secondary" data-bs-dismiss="modal"></input>
+                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         </div>
                     </form>
 
@@ -168,24 +166,22 @@
     </div>
 
     <!-- eliminar -->
-    <div class="modal fade" id="eliminarAdmin" tabindex="-1" aria-labelledby="eliminarAdminLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="eliminarModalLabel">Eliminar Usuario</h5>
-                </div>
-                <div class="modal-body">
-                    <h4>¿Seguro que quieres eliminar este usuario?</h4>
-                </div>
-                <div class="modal-footer">
-                    <form th:object="${adminDeleteForm}" method="post" th:action="@{/admin/administrar_usuarios/eliminar/{id}(id=${idAdmin})}">
-                        <input value="Eliminar Usuario" type="submit" class="btn btn-danger" ></input>
-                        <input value="Cancelar" type="reset" class="btn btn-secondary" data-bs-dismiss="modal"></input>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div class="modal fade" id="eliminarAdmin" tabindex="-1" aria-labelledby="eliminarAdminLabel" aria-hidden="true">-->
+<!--        <div class="modal-dialog">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="eliminarModalLabel">Eliminar Usuario</h5>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    <h4>¿Seguro que quieres eliminar este usuario?</h4>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                        <a th:href="@{/admin/administrar_usuarios/eliminar/{id}(id=${admin.id})}" class="btn btn-danger">Eliminar Usuario</a>-->
+<!--                        <button  type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
 
 
@@ -197,6 +193,8 @@
         crossorigin="anonymous"></script>
 </body>
 <script>
+
+    var adminID = $(button).data('adminID');
 
 </script>
 </html>
