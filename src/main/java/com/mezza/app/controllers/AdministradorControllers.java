@@ -55,7 +55,8 @@ public class AdministradorControllers {
     }
 
     @GetMapping("admin/login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("adminLoginForm", new Administrador());
         return "login-admin";
     }
 
@@ -69,11 +70,11 @@ public class AdministradorControllers {
     }
 
     @PostMapping("admin/login")
-    public String login(@RequestBody AdminLoginDTO adminLoginDTO, Model model) {
+    public String login(AdminLoginDTO adminLoginDTO, Model model) {
         try {
             model.addAttribute("adminLoginForm");
             Administrador admin = adminServices.Logear(adminLoginDTO);
-            return "redirect:/dashboard";
+            return "redirect:/admin/dashboard";
         } catch (Exception e) {
             return "ERROR";
         }

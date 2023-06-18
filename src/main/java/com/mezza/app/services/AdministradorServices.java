@@ -32,20 +32,25 @@ public class AdministradorServices {
         administradorRepository.save(admin);
     }
 
-    public Administrador Logear(AdminLoginDTO adminLoginDTO) throws Exception {
+//    public Administrador Logear(AdminLoginDTO adminLoginDTO) throws Exception {
+//        Administrador admin = administradorRepository.findById(adminLoginDTO.getId()).orElseThrow(() -> new Exception("Administrador no registrado"));
+//        int intentos = 0;
+//        if(!admin.getContrasena().equals(adminLoginDTO.getContrasena())){
+//            intentos++;
+//            administradorRepository.save(admin);
+//            if (intentos > 3) {
+//                administradorRepository.save(admin);
+//                throw new Exception("Exceso de intentos");
+//            }
+//            throw new Exception("Contraseña incorrecta");
+//        }
+//        administradorRepository.save(admin);
+//        return admin;
+//    }
 
-        Administrador admin = administradorRepository.findById(adminLoginDTO.getId()).orElseThrow(() -> new Exception("Administrador no registrado"));
-        int intentos = 0;
-        if(!admin.getContrasena().equals(adminLoginDTO.getContrasena())){
-            intentos++;
-            administradorRepository.save(admin);
-            if (intentos > 3) {
-                administradorRepository.save(admin);
-                throw new Exception("Exceso de intentos");
-            }
-            throw new Exception("Contraseña incorrecta");
-        }
-        administradorRepository.save(admin);
+    public Administrador Logear(AdminLoginDTO adminLoginDTO) throws Exception{
+        Administrador admin = administradorRepository.findByEmail(adminLoginDTO.getEmail()).orElseThrow(()-> new Exception("Usuario no existe"));
+        if(!admin.getContrasena().equals(adminLoginDTO.getContrasena())) throw new Exception("Contraseña Incorrecta");
         return admin;
     }
 

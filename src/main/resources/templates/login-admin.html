@@ -14,22 +14,19 @@
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card shadow-3-strong" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
-                            <form class="needs validation" target="_self" method="POST" action="dashboard-admin.html">
+                            <form class="needs validation" target="_self" method="POST" th:object="${adminLoginForm}" th:action="@{/admin/login}">
                                 <h3 class="mb-5"><img th:src="@{../img/logomezza-full.png}" height="100"></h3>
                                 <hr class="my-4">
 
                                 <div class="form-floating mb-4">
-                                    <input type="email" class="form-control" id="floatingEmail" placeholder="Correo Electronico" required>
+                                    <input th:field="*{email}" type="email" class="form-control" id="floatingEmail" placeholder="Correo Electronico" required>
                                     <label for="floatingPassword">Correo Electrónico</label>
                                 </div>
 
                                 <div class="form-floating mb-4">
-                                    <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" required>
+                                    <input th:field="*{contrasena}" type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" required>
                                     <label for="floatingPassword">Contraseña</label>
                                 </div>
-
-
-
                                 <button type="submit" class="btn btn-primary">Iniciar sesion</button>
                             </form>
 
