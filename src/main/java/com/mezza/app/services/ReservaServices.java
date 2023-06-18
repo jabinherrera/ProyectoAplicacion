@@ -49,6 +49,8 @@ public class ReservaServices {
 //        return reservaRepository.findAll().stream().filter(reserva -> reserva.getFecha()==hoy).toList();
 //    }
 
+    // TODO: Poner fecha como string y buscarla con contain(fecha), fecha tiene que ser optional
+
     public List<Reserva> mostrarReservasHoy() {
         return reservaRepository.findAll();
     }
