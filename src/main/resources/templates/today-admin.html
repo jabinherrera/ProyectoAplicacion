@@ -51,24 +51,24 @@
         <div class="row row-cols-1 justify-content-center my-5">
             <div class="col-8">
                 <div class="card text-center" style="background-color:#FFB774; color:white;">
-                    <h2 th:text>Hoy</h2>
+                    <h2>Hoy</h2>
                 </div>
             </div>
         </div>
         <thead>
         <tr>
-            <th scope="col" th:text>Nombre</th>
-            <th scope="col" th:text>Cantidad de personas</th>
-            <th scope="col" th:text>Hora</th>
-            <th scope="col" th:text></th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad de personas</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Acciones</th>
         </tr>
         </thead>
         <tbody class="table-group-divider" style="background-color:#FFEFE1;">
-        <tr>
-            <td th:text>...</td>
-            <td th:text>...</td>
-            <td th:text>...</td>
-            <td th:text><a href="#" class="btn btn-secondary" role="button" th:href>Editar</a></td>
+        <tr th:each="reserva : ${reservasHoy}">
+            <td th:text="${reserva.nombre_cliente}"></td>
+            <td th:text="${reserva.cant_personas}"></td>
+            <td th:text="${reserva.hora}"></td>
+            <td><a href="#" class="btn btn-secondary" role="button">Editar</a></td>
         </tr>
         </tbody>
     </table>

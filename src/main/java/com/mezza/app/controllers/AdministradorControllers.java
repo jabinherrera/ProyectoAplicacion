@@ -5,6 +5,7 @@ import com.mezza.app.dtos.ReservaDTO;
 import com.mezza.app.models.*;
 import com.mezza.app.repositories.AdministradorRepository;
 import com.mezza.app.services.AdministradorServices;
+import com.mezza.app.services.ReservaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,8 @@ public class AdministradorControllers {
 
     @Autowired
     private AdministradorServices adminServices;
+    @Autowired
+    private ReservaServices reservaServices;
 
     @GetMapping("admin/dashboard")
     public String dashboard() {
@@ -40,7 +43,8 @@ public class AdministradorControllers {
     }
 
     @GetMapping("admin/today_admin")
-    public String todayAdmin() {
+    public String todayAdmin(Model model) {
+        model.addAttribute("reservasHoy", reservaServices.mostrarReservasHoy());
         return "today-admin";
     }
 
@@ -56,7 +60,7 @@ public class AdministradorControllers {
 
     @GetMapping("admin/login")
     public String login(Model model) {
-        model.addAttribute("adminLoginForm", new Administrador());
+        model.addAttribute("reservasHoy", reservaServices.mostrarReservasHoy());
         return "login-admin";
     }
 

@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -21,6 +20,7 @@ public class ReservaControllers {
 
     @Autowired
     private ReservaServices reservaServices;
+    @Autowired
     private ReservaRepository reservaRepository;
 
     @GetMapping()
