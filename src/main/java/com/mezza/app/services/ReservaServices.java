@@ -51,13 +51,14 @@ public class ReservaServices {
 //    }
 
     // TODO: Poner fecha como string y buscarla con contain(fecha), fecha tiene que ser optional
-
+public String fechaHoy(){
+            String fechaHoy = Date.valueOf(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))).toString();
+            return fechaHoy;
+}
     public List<Reserva> mostrarReservas() {
         return reservaRepository.findAll();
     }
     public List<Reserva> mostrarReservasHoy() {
-        return reservaRepository.findAll().stream().filter(reserva -> {
-            return reserva.getFecha().toString().equals(LocalDate.now().format(DateTimeFormatter.ofPattern("HH:mm")).toString());
-        }).collect(Collectors.toList());
+        return reservaRepository.findAll().stream().filter(reserva -> reserva.getFecha().toString()==fechaHoy()).collect(Collectors.toList());
     }
 }
