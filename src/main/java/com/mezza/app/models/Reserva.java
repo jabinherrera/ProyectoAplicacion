@@ -17,22 +17,22 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_Reserva;
 
-    @Column(name = "fecha"/*, nullable = false*/)
+    @Column(name = "fecha", nullable = false)
     private Date fecha;
 
-    @Column(name = "hora"/*, nullable = false*/)
+    @Column(name = "hora", nullable = false)
     private LocalTime hora ;
 
-    @Column(name = "cant_personas"/*, nullable = false*/)
+    @Column(name = "cant_personas", nullable = false)
     private Integer cant_personas;
 
-    @Column(name = "nombre_cliente"/*, nullable = false*/)
+    @Column(name = "nombre_cliente", nullable = false)
     private String nombre_cliente;
 
-    @Column(name = "apellido_cliente"/*, nullable = false*/)
+    @Column(name = "apellido_cliente", nullable = false)
     private String apellido_cliente;
 
-    @Column (name = "email_cliente"/*, nullable = false*/)
+    @Column (name = "email_cliente", nullable = false)
     private String email_cliente;
 
 

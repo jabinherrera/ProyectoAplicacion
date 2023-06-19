@@ -14,23 +14,23 @@
 <div id="container-pagina">
   <div class="row text-center">
     <div class="col-4">
-      <div class="card text-center" id="info-restarurant" style="width: 18rem; height:100%; background: #D9D9D9; opacity: 85%;">
-        <img src="../static/img/logo-restaurant.png" class="card-img-top" alt="..." th:src>
+      <div class="card text-center" th:each="restaurant : ${restaurants}" id="info-restarurant" style="width: 18rem; height:100%; background: #D9D9D9; opacity: 85%;">
+        <img th:src="@{../img/logo-restaurant.png}" class="card-img-top" alt="...">
         <div class="card-body">
-          <p class="card-text" th:text>Para mas informacion, comunicarse a</p>
-          <img src="../static/img/whatsapp-logo.png" height="15" th:src>
-          <a href="#" class="card-link link-underline link-underline-opacity-0" th:href>+569 12345678</a>
+          <p class="card-text">Para mas informacion, comunicarse a</p>
+          <img th:src="@{../img/whatsapp-logo.png}" height="15">
+          <a href="#" class="card-link link-underline link-underline-opacity-0" th:text="${restaurant.telefono}"></a>
           <br>
-          <img src="../static/img/mail-logo.png" height="15" th:src>
-          <a href="#" class="card-link link-underline link-underline-opacity-0" th:href>info@restaurant.cl</a>
+          <img th:src="@{../img/mail-logo.png}" height="15">
+          <a href="#" class="card-link link-underline link-underline-opacity-0" th:text="${restaurant.email}"></a>
           <br>
           <br>
-          <p class="card-text" th:text>O visite nuestras redes sociales</p>
-          <img src="../static/img/facebook-logo.png" height="15" th:src>
-          <a href="#" class="card-link link-underline link-underline-opacity-0" th:href>Restaurant_fb</a>
+          <p class="card-text">O visite nuestras redes sociales</p>
+          <img th:src="@{../img/facebook-logo.png}" height="15">
+          <a href="#" class="card-link link-underline link-underline-opacity-0" th:text="${restaurant.facebook}"></a>
           <br>
-          <img src="../static/img/instagram-logo.png" height="15" th:src>
-          <a href="#" class="card-link link-underline link-underline-opacity-0" th:href>Restaurant_ig</a>
+          <img th:src="@{../img/instagram-logo.png}" height="15">
+          <a href="#" class="card-link link-underline link-underline-opacity-0" th:text="${restaurant.instagram}"></a>
         </div>
       </div>
     </div>

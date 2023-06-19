@@ -14,23 +14,23 @@
 <div id="container-pagina">
         <div class="row text-center">
             <div class="col-4">
-                <div class="card text-center" id="info-restarurant" style="width: 18rem; height:100%; background: #D9D9D9; opacity: 85%;">
+                <div class="card text-center" th:each="restaurant : ${restaurants}" id="info-restarurant" style="width: 18rem; height:100%; background: #D9D9D9; opacity: 85%;">
                     <img th:src="@{/img/logo-restaurant.png}" class="card-img-top" alt="..." >
                     <div class="card-body">
-                        <p class="card-text" th:text>Para mas informacion, comunicarse a</p>
+                        <p class="card-text" >Para mas informacion, comunicarse a</p>
                         <img th:src="@{/img/whatsapp-logo.png}" height="15" >
-                        <a href="#" class="card-link link-underline link-underline-opacity-0" >+569 12345678</a>
+                        <a href="#" class="card-link link-underline link-underline-opacity-0" th:text="${restaurant.telefono}">+569 12345678</a>
                         <br>
                         <img th:src="@{/img/mail-logo.png}" height="15" >
-                        <a href="#" class="card-link link-underline link-underline-opacity-0" >info@restaurant.cl</a>
+                        <a href="#" class="card-link link-underline link-underline-opacity-0" th:text="${restaurant.email}">info@restaurant.cl</a>
                         <br>
                         <br>
                         <p class="card-text" th:text>O visite nuestras redes sociales</p>
                         <img th:src="@{/img/facebook-logo.png}" height="15" >
-                        <a href="#" class="card-link link-underline link-underline-opacity-0" >Restaurant_fb</a>
+                        <a href="#" class="card-link link-underline link-underline-opacity-0" th:text="${restaurant.facebook}">Restaurant_fb</a>
                         <br>
                         <img th:src="@{/img/instagram-logo.png}" height="15" >
-                        <a href="#" class="card-link link-underline link-underline-opacity-0" >Restaurant_ig</a>
+                        <a href="#" class="card-link link-underline link-underline-opacity-0" th:text="${restaurant.instagram}">Restaurant_ig</a>
                     </div>
                 </div>
             </div>
@@ -56,31 +56,31 @@
                         </div>
                         <div class="col">
                             <label style="color: white" >Hora</label>
-                            <input  th:field="*{hora}" type="time" id="horaInput" class="form-control text-center" placeholder="00:00" min="09:00" max="20:00" onchange="formatoHora()" required>
-                            <!--<datalist id="horas">
-                                <option value="09:00:00"></option>
-                                <option value="09:30:00"></option>
-                                <option value="10:00:00"></option>
-                                <option value="10:30:00"></option>
-                                <option value="11:00:00"></option>
-                                <option value="11:30:00"></option>
-                                <option value="12:00:00"></option>
-                                <option value="12:30:00"></option>
-                                <option value="13:00:00"></option>
-                                <option value="13:30:00"></option>
-                                <option value="14:00:00"></option>
-                                <option value="14:30:00"></option>
-                                <option value="15:00:00"></option>
-                                <option value="15:30:00"></option>
-                                <option value="16:00:00"></option>
-                                <option value="16:30:00"></option>
-                                <option value="17:00:00"></option>
-                                <option value="17:30:00"></option>
-                                <option value="18:00:00"></option>
-                                <option value="18:30:00"></option>
-                                <option value="19:00:00"></option>
-                                <option value="19:30:00"></option>
-                            </datalist>-->
+                            <input  th:field="*{hora}" list="listahoras" type="time" id="horaInput" class="form-control text-center" placeholder="00:00" min="09:00" max="20:00" onchange="formatoHora()" required>
+                            <datalist id="listahoras">
+                                <option value="09:00"></option>
+                                <option value="09:30"></option>
+                                <option value="10:00"></option>
+                                <option value="10:30"></option>
+                                <option value="11:00"></option>
+                                <option value="11:30"></option>
+                                <option value="12:00"></option>
+                                <option value="12:30"></option>
+                                <option value="13:00"></option>
+                                <option value="13:30"></option>
+                                <option value="14:00"></option>
+                                <option value="14:30"></option>
+                                <option value="15:00"></option>
+                                <option value="15:30"></option>
+                                <option value="16:00"></option>
+                                <option value="16:30"></option>
+                                <option value="17:00"></option>
+                                <option value="17:30"></option>
+                                <option value="18:00"></option>
+                                <option value="18:30"></option>
+                                <option value="19:00"></option>
+                                <option value="19:30"></option>
+                            </datalist>
                         </div>
                         <div class="col">
                             <label style="color: white" th:label>N° Personas</label>

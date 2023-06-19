@@ -3,9 +3,10 @@ package com.mezza.app.services;
 import com.mezza.app.models.Pago;
 import com.mezza.app.repositories.PagoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
+@Service
 public class PagoServices {
 
     @Autowired

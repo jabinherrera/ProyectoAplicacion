@@ -15,10 +15,9 @@ public class PagoControllers {
 
     @Autowired PagoServices pagoServices;
 
-    @GetMapping("reserva/guardar")
+    @GetMapping("reserva/pago")
     public String reservar(Model model) {
-        model.addAttribute("reservaForm", new Reserva());
-        return "reserva";
+        return "reserva-redirect";
     }
 
     @PostMapping("reserva/pago/guardar")

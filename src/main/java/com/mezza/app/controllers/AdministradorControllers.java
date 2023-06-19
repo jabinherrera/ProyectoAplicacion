@@ -4,6 +4,7 @@ import com.mezza.app.dtos.AdminRegisterDTO;
 import com.mezza.app.models.*;
 import com.mezza.app.services.AdministradorServices;
 import com.mezza.app.services.ReservaServices;
+import com.mezza.app.services.RestaurantServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,8 @@ public class AdministradorControllers {
     private AdministradorServices adminServices;
     @Autowired
     private ReservaServices reservaServices;
+    @Autowired
+    private RestaurantServices restaurantServices;
 
     @GetMapping("/admin/dashboard")
     public String dashboard() {
@@ -30,7 +33,8 @@ public class AdministradorControllers {
     }
 
     @GetMapping("/admin/mi_restaurant")
-    public String miRestaurant() {
+    public String miRestaurant(Model model) {
+        model.addAttribute("restaurants", restaurantServices.mostrarRestaurant());
         return "mi-restaurant";
     }
 

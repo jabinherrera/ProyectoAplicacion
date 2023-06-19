@@ -55,32 +55,32 @@
     <img th:src="@{../img/logo-restaurant.png}" class="rounded-circle border border-dark" alt="..." style="width:10rem">
 </div>
 <div class="container-md justify-content m-auto">
-    <table class="table m-auto">
+    <table class="table m-auto mt-5" th:each="restaurant : ${restaurants}">
         <tbody>
         <tr>
-            <th></th>
-            <td th:text>+569 12345678</td>
+            <th>Telefono</th>
+            <td th:text="${restaurant.telefono}"></td>
             <td><button class="btn">Editar</button></td>
         </tr>
         <tr>
-            <th></th>
-            <td th:text>info@restaurant.cl</td>
+            <th>Email de contacto</th>
+            <td th:text="${restaurant.email}"></td>
             <td><button class="btn">Editar</button></td>
         </tr>
         <tr>
-            <th></th>
-            <td th:text>Restaurant_fb</td>
+            <th>Facebook</th>
+            <td th:text="${restaurant.facebook}">Restaurant_fb</td>
             <td><button class="btn">Editar</button></td>
         </tr>
         <tr>
-            <th></th>
-            <td th:text>Restaurant_ig</td>
+            <th>Instagram</th>
+            <td th:text="${restaurant.instagram}"></td>
             <td><button class="btn">Editar</button></td>
         </tr>
         </tbody>
     </table>
 </div>
-
+ <!--
 <div class="container mt-3">
     <h4 class="text-center my-5" th:text>Horarios</h4>
     <div class="row my-2" style="">
@@ -209,7 +209,7 @@
         </div>
     </div>
 </div>
-
+-->
 
 
 

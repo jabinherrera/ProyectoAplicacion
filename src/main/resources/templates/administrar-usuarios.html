@@ -139,8 +139,8 @@
                 </div>
                 <div class="modal-body">
                     <!-- Formulario-->
-                    <form th:object="${adminEditForm}" method="post" th:action="@{'/admin/administrar_usuarios/editar/' + ${adminID}}">
-                        <input type="hidden" id="adminID" name="id" th:field="*{id}" />
+                    <form th:object="${adminEditForm}" method="post" th:action="@{/admin/administrar_usuarios/editar/}">
+                        <input type="number" class="visually-hidden" id="adminID" name="id" th:field="*{admin.id}"/>
                         <div class="mb-3">
                             <label>Email</label>
                             <input type="text" th:field="*{email}" class="form-control" id="editEmail" th:placeholder="Email">
