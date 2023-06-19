@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,7 +52,12 @@ public class ReservaServices {
 
     // TODO: Poner fecha como string y buscarla con contain(fecha), fecha tiene que ser optional
 
-    public List<Reserva> mostrarReservasHoy() {
+    public List<Reserva> mostrarReservas() {
         return reservaRepository.findAll();
+    }
+    public List<Reserva> mostrarReservasHoy() {
+        return reservaRepository.findAll().stream().filter(reserva -> {
+            return reserva.getFecha().toString().equals(LocalDate.now().format(DateTimeFormatter.ofPattern("HH:mm")).toString());
+        }).collect(Collectors.toList());
     }
 }

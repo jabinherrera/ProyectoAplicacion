@@ -1,5 +1,6 @@
 package com.mezza.app.services;
 
+import com.mezza.app.dtos.AdminEditDTO;
 import com.mezza.app.dtos.AdminLoginDTO;
 import com.mezza.app.dtos.AdminRegisterDTO;
 import com.mezza.app.models.Administrador;
@@ -7,6 +8,7 @@ import com.mezza.app.repositories.AdministradorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,11 +57,11 @@ public class AdministradorServices {
     }
 
 
-    public void editarAdministrador(AdminRegisterDTO adminRegisterDTO, Long id) {
+    public void editarAdministrador(AdminEditDTO adminEditDTO, Long id) {
         Administrador admin = administradorRepository.findById(id).get();
-        admin.setEmail(adminRegisterDTO.getEmail());
-        admin.setNombre(adminRegisterDTO.getNombre());
-        admin.setApellido(adminRegisterDTO.getApellido());
+        admin.setEmail(adminEditDTO.getEmail());
+        admin.setNombre(adminEditDTO.getNombre());
+        admin.setApellido(adminEditDTO.getApellido());
 
         administradorRepository.save(admin);
     }

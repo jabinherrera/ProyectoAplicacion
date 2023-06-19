@@ -69,7 +69,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="admin : ${admins}">
-                    <th scope="row" th:text="${admin.id}"></th>
+                    <td th:text="${admin.id}"></td>
                     <td th:text="${admin.email}"></td>
                     <td th:text="${admin.nombre}"></td>
                     <td th:text="${admin.apellido}"></td>
@@ -77,11 +77,9 @@
                         <button class="btn btn-warning"
                                 data-bs-toggle="modal"
                                 data-bs-target="#editarAdmin"
-                                th:data-email="${admin.email}"
-                                th:data-nombre="${admin.nombre}"
-                                th:data-apellido="${admin.apellido}"
-                                th:data-idAdmin="${admin.id}"
-                                th:attr="data-adminID=${admin.id}">
+                                data-adminID="${admin.id}"
+                                th:attr="data-adminID=${admin.id}"
+                                onclick="capturarIdAdmin(this)">
                             Editar
                         </button>
                         <a th:href="@{/admin/administrar_usuarios/eliminar/{id}(id=${admin.id})}" class="btn btn-danger" >Eliminar</a>
@@ -139,8 +137,8 @@
                 </div>
                 <div class="modal-body">
                     <!-- Formulario-->
-                    <form th:object="${adminEditForm}" method="post" th:action="@{/admin/administrar_usuarios/editar/}">
-                        <input type="number" class="visually-hidden" id="adminID" name="id" th:field="*{admin.id}"/>
+                    <form th:object="${adminEditForm}" method="post" th:action="@{'/admin/administrar_usuarios/editar/' + ${idAdmin}}">
+                        <input type="number" class="visually-hidden" name="id" value="${idAdmin}"/>
                         <div class="mb-3">
                             <label>Email</label>
                             <input type="text" th:field="*{email}" class="form-control" id="editEmail" th:placeholder="Email">
@@ -188,13 +186,14 @@
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
 </body>
 <script>
 
-    var adminID = $(button).data('adminID');
+    function capturarIdAdmin(btn) {
+    var idAdmin = btn.getAttribute("data-adminID");
+    document.getElementById("adminID").value = idAdmin;
+    console.log(${idAdmin});
+}
 
 </script>
 </html>

@@ -1,4 +1,5 @@
 package com.mezza.app.controllers;
+import com.mezza.app.dtos.AdminEditDTO;
 import com.mezza.app.dtos.AdminLoginDTO;
 import com.mezza.app.dtos.AdminRegisterDTO;
 import com.mezza.app.models.*;
@@ -40,17 +41,19 @@ public class AdministradorControllers {
 
     @GetMapping("/admin/today_admin")
     public String todayAdmin(Model model) {
-        model.addAttribute("reservasHoy", reservaServices.mostrarReservasHoy());
+        model.addAttribute("reservasHoy", reservaServices.mostrarReservas());
         return "today-admin";
     }
 
     @GetMapping("/admin/tomorrow_admin")
-    public String tomorrowAdmin() {
+    public String tomorrowAdmin(Model model) {
+        model.addAttribute("reservasHoy", reservaServices.mostrarReservas());
         return "tomorrow-admin";
     }
 
     @GetMapping("/admin/next_day_admin")
-    public String nextDayAdmin() {
+    public String nextDayAdmin(Model model) {
+        model.addAttribute("reservasHoy", reservaServices.mostrarReservas());
         return "nextdays-admin";
     }
 
@@ -64,7 +67,7 @@ public class AdministradorControllers {
     public String administrarUsuarios(Model model) {
         model.addAttribute("admins", adminServices.mostrarAdmins());
         model.addAttribute("adminRegisterForm", new Administrador());
-        model.addAttribute("adminEditForm", new AdminRegisterDTO());
+        model.addAttribute("adminEditForm", new AdminEditDTO());
         return "administrar-usuarios";
     }
 
@@ -88,10 +91,19 @@ public class AdministradorControllers {
         return "redirect:/admin/administrar_usuarios";
     }
 
+    @GetMapping ("/admin/administrar_usuarios/editar/{id}")
+    public String administrarEditar(@PathVariable Long id, Model model) {
+        AdminEditDTO adminEditForm = new AdminEditDTO();
+        adminEditForm.setId(id);
+        model.addAttribute("adminID", id);
+        model.addAttribute("adminEditForm", new AdminEditDTO());
+        return "administrar-usuarios";
+    }
+
     @PostMapping("/admin/administrar_usuarios/editar/{id}")
-    public String editarAdministrador(@RequestBody AdminRegisterDTO adminRegisterDTO, @PathVariable Long id) {
+    public String editarAdministrador(AdminEditDTO adminEditDTO, @PathVariable("id") Long id) {
         try {
-            adminServices.editarAdministrador(adminRegisterDTO, id);
+            adminServices.editarAdministrador(adminEditDTO, id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
