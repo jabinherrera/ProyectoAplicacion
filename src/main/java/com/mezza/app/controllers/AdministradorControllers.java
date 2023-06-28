@@ -75,7 +75,7 @@ public class AdministradorControllers {
     public String login(AdminLoginDTO adminLoginDTO) {
         try {
             Administrador admin = adminServices.Logear(adminLoginDTO);
-            return "redirect:admin/dashboard";
+            return "redirect:/admin/dashboard";
         } catch (Exception e) {
             return "ERROR";
         }
@@ -86,18 +86,16 @@ public class AdministradorControllers {
         try {
             adminServices.Registrar(adminRegisterDTO);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.err.println(e);
+            return "redirect:/admin/administrar_usuarios";
         }
         return "redirect:/admin/administrar_usuarios";
     }
 
     @GetMapping ("/admin/administrar_usuarios/editar/{id}")
     public String administrarEditar(@PathVariable Long id, Model model) {
-        AdminEditDTO adminEditForm = new AdminEditDTO();
-        adminEditForm.setId(id);
-        model.addAttribute("adminID", id);
-        model.addAttribute("adminEditForm", new AdminEditDTO());
-        return "administrar-usuarios";
+        model.addAttribute("adminEditForm", adminServices.getAdminById(id));
+        return "form-editar-admin";
     }
 
     @PostMapping("/admin/administrar_usuarios/editar/{id}")
@@ -105,7 +103,8 @@ public class AdministradorControllers {
         try {
             adminServices.editarAdministrador(adminEditDTO, id);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.err.println(e);
+            return "redirect:/admin/administrar_usuarios/editar/" + id;
         }
         return "redirect:/admin/administrar_usuarios";
     }

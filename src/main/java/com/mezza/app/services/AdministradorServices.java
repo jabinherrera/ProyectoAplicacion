@@ -5,6 +5,7 @@ import com.mezza.app.dtos.AdminLoginDTO;
 import com.mezza.app.dtos.AdminRegisterDTO;
 import com.mezza.app.models.Administrador;
 import com.mezza.app.repositories.AdministradorRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,10 @@ public class AdministradorServices {
         administradorRepository.save(admin);
     }
 
+    public Administrador getAdminById(Long id){
+        return administradorRepository.findById(id).get();
+    }
+
 //    public Administrador Logear(AdminLoginDTO adminLoginDTO) throws Exception {
 //        Administrador admin = administradorRepository.findById(adminLoginDTO.getId()).orElseThrow(() -> new Exception("Administrador no registrado"));
 //        int intentos = 0;
@@ -58,12 +63,17 @@ public class AdministradorServices {
 
 
     public void editarAdministrador(AdminEditDTO adminEditDTO, Long id) {
-        Administrador admin = administradorRepository.findById(id).get();
-        admin.setEmail(adminEditDTO.getEmail());
-        admin.setNombre(adminEditDTO.getNombre());
-        admin.setApellido(adminEditDTO.getApellido());
 
-        administradorRepository.save(admin);
+        Administrador admin = administradorRepository.findById(id).get();
+        try {
+            verificarEmail(adminEditDTO.getEmail());
+            admin.setEmail(adminEditDTO.getEmail());
+            admin.setNombre(adminEditDTO.getNombre());
+            admin.setApellido(adminEditDTO.getApellido());
+            administradorRepository.save(admin);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void eliminarAdministrador(Long id) {

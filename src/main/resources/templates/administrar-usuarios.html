@@ -73,15 +73,15 @@
                     <td th:text="${admin.email}"></td>
                     <td th:text="${admin.nombre}"></td>
                     <td th:text="${admin.apellido}"></td>
-                    <td>
-                        <button class="btn btn-warning"
-                                data-bs-toggle="modal"
-                                data-bs-target="#editarAdmin"
-                                data-adminID="${admin.id}"
-                                th:attr="data-adminID=${admin.id}"
-                                onclick="capturarIdAdmin(this)">
-                            Editar
-                        </button>
+                    <td><a th:href="@{/admin/administrar_usuarios/editar/{id}(id=${admin.id})}" class="btn btn-warning" >Editar</a>
+<!--                        <button class="btn btn-warning"-->
+<!--                                data-bs-toggle="modal"-->
+<!--                                data-bs-target="#editarAdmin"-->
+<!--                                data-adminID="${admin.id}"-->
+<!--                                th:attr="data-adminID=${admin.id}"-->
+<!--                                onclick="capturarIdAdmin(this)">-->
+<!--                            Editar-->
+<!--                        </button>-->
                         <a th:href="@{/admin/administrar_usuarios/eliminar/{id}(id=${admin.id})}" class="btn btn-danger" >Eliminar</a>
                     </td>
                 </tr>
@@ -128,40 +128,40 @@
     </div>
 
     <!-- editar-->
-    <div class="modal fade" id="editarAdmin" tabindex="-1" aria-labelledby="editarAdminLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editarModalLabel">Editar Usuario</h5>
-                </div>
-                <div class="modal-body">
-                    <!-- Formulario-->
-                    <form th:object="${adminEditForm}" method="post" th:action="@{'/admin/administrar_usuarios/editar/' + ${idAdmin}}">
-                        <input type="number" class="visually-hidden" name="id" value="${idAdmin}"/>
-                        <div class="mb-3">
-                            <label>Email</label>
-                            <input type="text" th:field="*{email}" class="form-control" id="editEmail" th:placeholder="Email">
-                        </div>
-                        <div class="mb-3">
-                            <label>Nombre</label>
-                            <input type="text" th:field="*{nombre}" class="form-control" id="editNombre" placeholder="Nombre">
-                        </div>
-                        <div class="mb-3">
-                            <label>Apellido</label>
-                            <input type="text" th:field="*{apellido}" class="form-control" id="editApellido" placeholder="Apellido">
-                        </div>
-                        <div class="modal-footer">
-                            <input value="Guardar Cambios" type="submit" class="btn btn-success"></input>
-                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        </div>
-                    </form>
+<!--    <div class="modal fade" id="editarAdmin" tabindex="-1" aria-labelledby="editarAdminLabel"-->
+<!--         aria-hidden="true">-->
+<!--        <div class="modal-dialog">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="editarModalLabel">Editar Usuario</h5>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    &lt;!&ndash; Formulario&ndash;&gt;-->
+<!--                    <form th:object="${adminEditForm}" method="post" th:action="@{'/admin/administrar_usuarios/editar/' + ${idAdmin}}">-->
+<!--                        <input type="number" class="visually-hidden" name="id" value="${idAdmin}"/>-->
+<!--                        <div class="mb-3">-->
+<!--                            <label>Email</label>-->
+<!--                            <input type="text" th:field="*{email}" class="form-control" id="editEmail" th:placeholder="Email">-->
+<!--                        </div>-->
+<!--                        <div class="mb-3">-->
+<!--                            <label>Nombre</label>-->
+<!--                            <input type="text" th:field="*{nombre}" class="form-control" id="editNombre" placeholder="Nombre">-->
+<!--                        </div>-->
+<!--                        <div class="mb-3">-->
+<!--                            <label>Apellido</label>-->
+<!--                            <input type="text" th:field="*{apellido}" class="form-control" id="editApellido" placeholder="Apellido">-->
+<!--                        </div>-->
+<!--                        <div class="modal-footer">-->
+<!--                            <input value="Guardar Cambios" type="submit" class="btn btn-success"></input>-->
+<!--                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
 
-                </div>
+<!--                </div>-->
 
-            </div>
-        </div>
-    </div>
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
     <!-- eliminar -->
 <!--    <div class="modal fade" id="eliminarAdmin" tabindex="-1" aria-labelledby="eliminarAdminLabel" aria-hidden="true">-->
