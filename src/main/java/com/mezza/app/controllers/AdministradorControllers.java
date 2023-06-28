@@ -75,7 +75,7 @@ public class AdministradorControllers {
     public String login(AdminLoginDTO adminLoginDTO) {
         try {
             Administrador admin = adminServices.Logear(adminLoginDTO);
-            return "redirect:admin/dashboard";
+            return "redirect:/admin/dashboard";
         } catch (Exception e) {
             return "ERROR";
         }
