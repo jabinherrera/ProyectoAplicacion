@@ -24,7 +24,9 @@ public class AdministradorControllers {
     private RestaurantServices restaurantServices;
 
     @GetMapping("/admin/dashboard")
-    public String dashboard() {
+    public String dashboard(Model model) {
+        model.addAttribute("cantidadReservasHoy", reservaServices.contarReservasHoy());
+        model.addAttribute("cantidadReservasManana", reservaServices.contarReservasManana());
         return "dashboard-admin";
     }
 
@@ -41,13 +43,13 @@ public class AdministradorControllers {
 
     @GetMapping("/admin/today_admin")
     public String todayAdmin(Model model) {
-        model.addAttribute("reservasHoy", reservaServices.mostrarReservas());
+        model.addAttribute("reservasHoy", reservaServices.mostrarReservasHoy());
         return "today-admin";
     }
 
     @GetMapping("/admin/tomorrow_admin")
     public String tomorrowAdmin(Model model) {
-        model.addAttribute("reservasHoy", reservaServices.mostrarReservas());
+        model.addAttribute("reservasManana", reservaServices.mostrarReservasManana());
         return "tomorrow-admin";
     }
 

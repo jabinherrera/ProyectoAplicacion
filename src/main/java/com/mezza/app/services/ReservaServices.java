@@ -1,6 +1,5 @@
 package com.mezza.app.services;
 
-import com.mezza.app.models.Administrador;
 import com.mezza.app.models.Reserva;
 
 import com.mezza.app.repositories.ReservaRepository;
@@ -10,8 +9,8 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ReservaServices {
@@ -19,14 +18,14 @@ public class ReservaServices {
     @Autowired
     public ReservaRepository reservaRepository;
 
-        public void guardar(Reserva reserva) {
-            try {
-                reservaRepository.save(reserva);
+    public void guardar(Reserva reserva) {
+        try {
+            reservaRepository.save(reserva);
 
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
+    }
 
 //    public List<Reserva> mostrarReservasHoy() {
 //        LocalDate fechaActual = LocalDate.now();
@@ -51,14 +50,51 @@ public class ReservaServices {
 //    }
 
     // TODO: Poner fecha como string y buscarla con contain(fecha), fecha tiene que ser optional
-public String fechaHoy(){
-            String fechaHoy = Date.valueOf(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))).toString();
-            return fechaHoy;
-}
+    public String fechaHoy() {
+        String fechaHoy = Date.valueOf(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))).toString();
+        return fechaHoy;
+    }
+
+    public String fechaManana() {
+        String fechaManana = Date.valueOf(LocalDate.now().plusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))).toString();
+        return fechaManana;
+    }
+
     public List<Reserva> mostrarReservas() {
         return reservaRepository.findAll();
     }
+
+    public long contarReservasHoy() {
+        return mostrarReservasHoy().stream().count();
+    }
+
+    public long contarReservasManana() {
+        return mostrarReservasManana().stream().count();
+    }
+
     public List<Reserva> mostrarReservasHoy() {
-        return reservaRepository.findAll().stream().filter(reserva -> reserva.getFecha().toString()==fechaHoy()).collect(Collectors.toList());
+        List<Reserva> reservasHoy = new ArrayList<>();
+        List<Reserva> reservas = reservaRepository.findAll();
+
+        for (Reserva reserva  : reservas) {
+            if (reserva.getFecha().toString().equals(fechaHoy())) {
+                reservasHoy.add(reserva);
+            }
+        }
+
+        return reservasHoy;
+    }
+
+    public List<Reserva> mostrarReservasManana() {
+        List<Reserva> reservasManana = new ArrayList<>();
+        List<Reserva> reservas = reservaRepository.findAll();
+
+        for (Reserva reserva  : reservas) {
+            if (reserva.getFecha().toString().equals(fechaManana())) {
+                reservasManana.add(reserva);
+            }
+        }
+
+        return reservasManana;
     }
 }

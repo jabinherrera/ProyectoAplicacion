@@ -64,8 +64,8 @@
         </tr>
         </thead>
         <tbody class="table-group-divider" style="background-color:#D0D8E8;">
-        <tr th:each="reserva : ${reservas}">
-            <td th:text="${reserva.nombre}"></td>
+        <tr th:each="reserva : ${reservasManana}">
+            <td th:text="${reserva.nombre_cliente}"></td>
             <td th:text="${reserva.cant_personas}"></td>
             <td th:text="${reserva.hora}"></td>
             <td><a href="#" class="btn btn-secondary" role="button">Editar</a></td>
