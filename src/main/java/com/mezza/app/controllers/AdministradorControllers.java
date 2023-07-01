@@ -24,14 +24,15 @@ public class AdministradorControllers {
     private RestaurantServices restaurantServices;
 
     @GetMapping("/admin/dashboard")
-    public String dashboard(Model model) {
+    public String dashboard(@PathVariable Long id, Model model) {
         model.addAttribute("cantidadReservasHoy", reservaServices.contarReservasHoy());
         model.addAttribute("cantidadReservasManana", reservaServices.contarReservasManana());
         return "dashboard-admin";
     }
 
-    @GetMapping("/admin/mi_cuenta")
-    public String miCuenta() {
+    @GetMapping("/admin/mi_cuenta/{id}")
+    public String miCuenta(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("miCuenta", adminServices.getAdminById(id));
         return "mi-cuenta";
     }
 
@@ -73,6 +74,14 @@ public class AdministradorControllers {
         return "administrar-usuarios";
     }
 
+    @GetMapping ("/admin/administrar_usuarios/editar/{id}")
+    public String administrarEditar(@PathVariable Long id, Model model) {
+        model.addAttribute("adminEditForm", adminServices.getAdminById(id));
+        return "form-editar-admin";
+    }
+
+
+
     @PostMapping("/admin/login")
     public String login(AdminLoginDTO adminLoginDTO) {
         try {
@@ -94,11 +103,7 @@ public class AdministradorControllers {
         return "redirect:/admin/administrar_usuarios";
     }
 
-    @GetMapping ("/admin/administrar_usuarios/editar/{id}")
-    public String administrarEditar(@PathVariable Long id, Model model) {
-        model.addAttribute("adminEditForm", adminServices.getAdminById(id));
-        return "form-editar-admin";
-    }
+
 
     @PostMapping("/admin/administrar_usuarios/editar/{id}")
     public String editarAdministrador(AdminEditDTO adminEditDTO, @PathVariable("id") Long id) {
