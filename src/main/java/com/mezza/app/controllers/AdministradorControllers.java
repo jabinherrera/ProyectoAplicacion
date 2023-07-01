@@ -22,18 +22,16 @@ public class AdministradorControllers {
     private ReservaServices reservaServices;
     @Autowired
     private RestaurantServices restaurantServices;
-    //aaaaaaaaaaaaa
 
     @GetMapping("/admin/dashboard")
-    public String dashboard(@PathVariable Long id, Model model) {
+    public String dashboard(Model model) {
         model.addAttribute("cantidadReservasHoy", reservaServices.contarReservasHoy());
         model.addAttribute("cantidadReservasManana", reservaServices.contarReservasManana());
         return "dashboard-admin";
     }
 
-    @GetMapping("/admin/mi_cuenta/{id}")
-    public String miCuenta(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("miCuenta", adminServices.getAdminById(id));
+    @GetMapping("/admin/mi_cuenta")
+    public String miCuenta(Model model) {
         return "mi-cuenta";
     }
 

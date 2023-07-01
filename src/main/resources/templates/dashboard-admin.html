@@ -9,74 +9,74 @@
 </head >
 <body style="background-color: #FFFFFF;">
 
-        <div class="row row-cols-auto justify-content-center" style="background-color:#C7C4C4;">
-            <a th:href="@{/admin/dashboard}"><img class="col rounded-4 float-start my-2 me-auto ms-3" th:src="@{../img/logomezza.png}" height="60" width="60"></a>
+<div class="row row-cols-auto justify-content-center" style="background-color:#C7C4C4;">
+    <a th:href="@{/admin/dashboard}"><img class="col rounded-4 float-start my-2 me-auto ms-3" th:src="@{../img/logomezza.png}" height="60" width="60"></a>
 
-            <nav class="col-8 text-end my-auto">
-                <div class="container-sm">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">Administrador</button>
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Administrador</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body">
-                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" th:list>
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" th:href="@{/admin/mi_cuenta}" >Mi Cuenta</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" th:href="@{/admin/administrar_usuarios}">Administrar Usuarios</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" th:href="@{/admin/mi_restaurant}">Mi restaurant</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" th:href="@{/admin/login}">Cerrar Sesión</a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
+    <nav class="col-8 text-end my-auto">
+        <div class="container-sm">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">Administrador</button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Administrador</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-            </nav>
-            <img class="col rounded-circle float-end my-2 ms-0 me-3" th:src="@{../img/user-profile.jpg}" height="60">
-        </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" th:list>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/admin/mi_cuenta}" >Mi Cuenta</a>
+                        </li>
 
-        <div class="container text-center m-auto mt-5">
-            <div class="row justify-content-center my-3">
-                <div class="col-4">
-                    <div class="card text-center ms-0 me-5" style="background-color:#FFB774;">
-                        <div class="card-body" style="color: #FFFFFF;">
-                        <h2 class="card-title">Reservas de hoy</h2>
-                        <p class="card-text fs-1 fw-semibold" th:text="${cantidadReservasHoy}"></p>
-                        <a th:href="@{/admin/today_admin}" type="button" class="btn btn-light" >Ver detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card text-center ms-5 me-0" style="background-color:#6782B6;">
-                        <div class="card-body" style="color: #FFFFFF;">
-                        <h2 class="card-title" >Reservas de mañana</h2>
-                        <p class="card-text fs-1 fw-semibold" th:text="${cantidadReservasManana}"></p>
-                        <a th:href="@{/admin/tomorrow_admin}" type="button" class="btn btn-light" >Ver detalles</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row row-cols-1 justify-content-center">
-                <div class="col-8">
-                    <div class="card text-center" style="background-color:#81B5C0;">
-                        <div class="card-body d-grid gap-2">
-                            <a th:href="@{/admin/next_day_admin}" class="btn fs-4 fw-medium" style="color:#ffffff;" type="button"role="button" >Ver todas las reservas</a>
-                        </div>
-                    </div>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/admin/administrar_usuarios}">Administrar Usuarios</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/admin/mi_restaurant}">Mi restaurant</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/admin/login}">Cerrar Sesión</a>
+                        </li>
+
+                    </ul>
                 </div>
             </div>
         </div>
+    </nav>
+    <img class="col rounded-circle float-end my-2 ms-0 me-3" th:src="@{../img/user-profile.jpg}" height="60">
+</div>
+
+<div class="container text-center m-auto mt-5">
+    <div class="row justify-content-center my-3">
+        <div class="col-4">
+            <div class="card text-center ms-0 me-5" style="background-color:#FFB774;">
+                <div class="card-body" style="color: #FFFFFF;">
+                    <h2 class="card-title">Reservas de hoy</h2>
+                    <p class="card-text fs-1 fw-semibold" th:text="${cantidadReservasHoy}"></p>
+                    <a th:href="@{/admin/today_admin}" type="button" class="btn btn-light" >Ver detalles</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card text-center ms-5 me-0" style="background-color:#6782B6;">
+                <div class="card-body" style="color: #FFFFFF;">
+                    <h2 class="card-title" >Reservas de mañana</h2>
+                    <p class="card-text fs-1 fw-semibold" th:text="${cantidadReservasManana}"></p>
+                    <a th:href="@{/admin/tomorrow_admin}" type="button" class="btn btn-light" >Ver detalles</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 justify-content-center">
+        <div class="col-8">
+            <div class="card text-center" style="background-color:#81B5C0;">
+                <div class="card-body d-grid gap-2">
+                    <a th:href="@{/admin/next_day_admin}" class="btn fs-4 fw-medium" style="color:#ffffff;" type="button"role="button" >Ver todas las reservas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
