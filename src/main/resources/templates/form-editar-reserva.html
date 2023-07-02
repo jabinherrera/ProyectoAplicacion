@@ -7,30 +7,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
             crossorigin="anonymous"></script>
-    <title>Editar Administrador</title>
+    <title>Editar Mi Cuenta</title>
 </head>
-<body th:each="admin : ${adminEditForm}">
+<body th:each="reserva : ${reservaEditForm}" >
 <div class="container mt-5 p-5 border rounded" style="width:500px;">
-    <form th:object="${adminEditForm}" method="post" th:action="@{/admin/administrar_usuarios/editar/{id}(id=${admin.id})}">
+    <form th:object="${reservaEditForm}" method="post" th:action="@{/admin/reserva/editar/{id}(id=${reserva.id_Reserva})}">
         <div class="mb-3">
-            <label>Email</label>
-            <input type="email" th:field="*{email}" class="form-control" id="editEmail" placeholder="Email">
+            <label>Fecha</label>
+            <input type="date" th:field="*{fecha}" class="form-control" id="editEmail" placeholder="Fecha">
         </div>
         <div class="mb-3">
-            <label>Nombre</label>
-            <input type="text" th:field="*{nombre}" class="form-control" id="editNombre" placeholder="Nombre">
+            <label>Hora</label>
+            <input type="time" th:field="*{hora}" class="form-control" id="editNombre" placeholder="Hora">
         </div>
         <div class="mb-3">
-            <label>Apellido</label>
-            <input type="text" th:field="*{apellido}" class="form-control" id="editApellido" placeholder="Apellido">
+            <label>Personas</label>
+            <input type="number" th:field="*{cant_personas}" class="form-control" id="editApellido" placeholder="Cantidad de Personas">
         </div>
         <div >
             <input value="Guardar Cambios" type="submit" class="btn btn-success"></input>
-            <a th:href="@{/admin/administrar_usuarios}" class="btn btn-outline-secondary">Cancelar</a>
+            <a onclick="history.back()"  class="btn btn-outline-secondary">Cancelar</a>
         </div>
     </form>
 </div>
-
-
 </body>
 </html>

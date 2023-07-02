@@ -1,5 +1,7 @@
 package com.mezza.app.services;
 
+import com.mezza.app.dtos.ReservaDTO;
+import com.mezza.app.dtos.ReservaEditDTO;
 import com.mezza.app.models.Reserva;
 
 import com.mezza.app.repositories.ReservaRepository;
@@ -8,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -18,8 +22,21 @@ public class ReservaServices {
     @Autowired
     public ReservaRepository reservaRepository;
 
-    public void guardar(Reserva reserva) {
+    public Reserva getReservaById(Long id){
+        return reservaRepository.findById(id).get();
+    }
+
+    public void guardar(ReservaDTO reservaDTO) {
         try {
+            Reserva reserva = new Reserva();
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
+
+            reserva.setFecha(Date.valueOf(reservaDTO.getFecha()));
+            reserva.setHora(LocalTime.parse(reservaDTO.getHora(), formato));
+            reserva.setCant_personas(Integer.parseInt(reservaDTO.getCant_personas()));
+            reserva.setNombre_cliente(reservaDTO.getNombre_cliente());
+            reserva.setApellido_cliente(reservaDTO.getApellido_cliente());
+            reserva.setEmail_cliente(reservaDTO.getEmail_cliente());
             reservaRepository.save(reserva);
 
         } catch (Exception e) {
@@ -27,29 +44,19 @@ public class ReservaServices {
         }
     }
 
-//    public List<Reserva> mostrarReservasHoy() {
-//        LocalDate fechaActual = LocalDate.now();
-//        Predicate<Reserva> esFechaActual = reserva -> reserva.getFecha().equals(fechaActual);
-//        List<Reserva> reservasSinFiltrar = reservaRepository.findAll();
-//        List<Reserva> reservasHoy = reservasSinFiltrar.stream()
-//                .filter(esFechaActual)
-//                .collect(Collectors.toList());
-//        return reservasHoy;
-//    }
+    public void editar(ReservaEditDTO reservaEditDTO, Long id){
+        Reserva reserva = reservaRepository.findById(id).get();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
 
-//    public List<Reserva> mostrarReservasHoy() {
-//        LocalDate localDate = LocalDate.now();
-//
-//        int year = localDate.getYear();
-//        int month = localDate.getMonthValue();
-//        int day = localDate.getDayOfMonth();
-//
-//        Date hoy = new Date(year - 1900, month - 1, day);
-//
-//        return reservaRepository.findAll().stream().filter(reserva -> reserva.getFecha()==hoy).toList();
-//    }
+        reserva.setFecha(Date.valueOf(reservaEditDTO.getFecha()));
+        reserva.setHora(LocalTime.parse(reservaEditDTO.getHora(), formato));
+        reserva.setCant_personas(Integer.parseInt(reservaEditDTO.getCant_personas()));
 
-    // TODO: Poner fecha como string y buscarla con contain(fecha), fecha tiene que ser optional
+        reservaRepository.save(reserva);
+
+    }
+
+
     public String fechaHoy() {
         String fechaHoy = Date.valueOf(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))).toString();
         return fechaHoy;
@@ -96,5 +103,21 @@ public class ReservaServices {
         }
 
         return reservasManana;
+    }
+
+    public List<Reserva> mostrarReservasProximas() {
+        List<Reserva> reservasProximas = new ArrayList<>();
+        List<Reserva> reservas = mostrarReservas();
+
+        for (Reserva reserva  : reservas) {
+            if (reserva.getFecha().after(Date.valueOf(fechaManana()))) {
+                reservasProximas.add(reserva);
+            }
+        }
+
+
+        return reservasProximas.stream()
+                .sorted(Comparator.comparing(Reserva::getFecha))
+                .toList();
     }
 }

@@ -46,17 +46,11 @@ public class ReservaControllers {
 
     @PostMapping("/reserva/guardar")
     public String guardarReserva(ReservaDTO reservaDTO) {
-        Reserva reserva = new Reserva();
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
 
-        reserva.setFecha(Date.valueOf(reservaDTO.getFecha()));
-        reserva.setHora(LocalTime.parse(reservaDTO.getHora(), formato));
-        reserva.setCant_personas(Integer.parseInt(reservaDTO.getCant_personas()));
-        reserva.setNombre_cliente(reservaDTO.getNombre_cliente());
-        reserva.setApellido_cliente(reservaDTO.getApellido_cliente());
-        reserva.setEmail_cliente(reservaDTO.getEmail_cliente());
-        reservaServices.guardar(reserva);
+        reservaServices.guardar(reservaDTO);
         return "redirect:/reserva/reserva_redirect";
     }
+
+
 
 }

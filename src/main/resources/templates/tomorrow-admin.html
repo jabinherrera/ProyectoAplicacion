@@ -68,7 +68,7 @@
             <td th:text="${reserva.nombre_cliente}"></td>
             <td th:text="${reserva.cant_personas}"></td>
             <td th:text="${reserva.hora}"></td>
-            <td><a href="#" class="btn btn-secondary" role="button">Editar</a></td>
+            <td><a th:href="@{/admin/reserva/editar/{id}(id=${reserva.id_Reserva})}" class="btn btn-secondary" role="button">Editar</a></td>
         </tr>
         </tbody>
     </table>

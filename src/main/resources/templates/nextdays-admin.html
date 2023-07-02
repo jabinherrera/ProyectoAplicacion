@@ -54,20 +54,7 @@
     <div class="row row-cols-1 justify-content-center my-5">
       <div class="col-8">
         <div class="card text-center" style="background-color:#80B5C0; color:white;">
-          <h2>Fecha</h2>
-          <script type="text/javascript">
-$(document).ready(function() {
-  $('#sandbox-container div').datepicker({
-      weekStart: 1,
-      todayBtn: "linked",
-      language: "es",
-      daysOfWeekDisabled: "0,6",
-      todayHighlight: true
-  }).on("changeDate", function(e) {
-
-  });
-});
-</script>
+          <h2>Proximas Reservas</h2>
         </div>
       </div>
     </div>
@@ -80,11 +67,12 @@ $(document).ready(function() {
     </tr>
     </thead>
     <tbody class="table-group-divider" style="background-color:#FFEFE1;">
-    <tr th:each="reserva : ${reservasHoy}">
+    <tr th:each="reserva : ${reservasProximas}">
       <td th:text="${reserva.nombre_cliente}"></td>
       <td th:text="${reserva.cant_personas}"></td>
       <td th:text="${reserva.hora}"></td>
-      <td><a href="#" class="btn btn-secondary" role="button">Editar</a></td>
+      <td th:text="${reserva.fecha}"></td>
+      <td><a th:href="@{/admin/reserva/editar/{id}(id=${reserva.id_Reserva})}" class="btn btn-secondary" role="button">Editar</a></td>
     </tr>
     </tbody>
   </table>
