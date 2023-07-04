@@ -1,6 +1,7 @@
 package com.mezza.app.services;
 
 import com.mezza.app.dtos.AdminEditDTO;
+import com.mezza.app.dtos.AdminEditMiCuentaDTO;
 import com.mezza.app.dtos.AdminLoginDTO;
 import com.mezza.app.dtos.AdminRegisterDTO;
 import com.mezza.app.models.Administrador;
@@ -70,6 +71,20 @@ public class AdministradorServices {
             admin.setEmail(adminEditDTO.getEmail());
             admin.setNombre(adminEditDTO.getNombre());
             admin.setApellido(adminEditDTO.getApellido());
+            administradorRepository.save(admin);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void editarMiCuenta(AdminEditMiCuentaDTO adminEditMiCuentaDTO, Long id) {
+
+        Administrador admin = administradorRepository.findById(id).get();
+        try {
+            verificarEmail(adminEditMiCuentaDTO.getEmail());
+            admin.setEmail(adminEditMiCuentaDTO.getEmail());
+            admin.setNombre(adminEditMiCuentaDTO.getNombre());
+            admin.setContrasena(adminEditMiCuentaDTO.getContrasena());
             administradorRepository.save(admin);
         } catch (Exception e) {
             throw new RuntimeException(e);

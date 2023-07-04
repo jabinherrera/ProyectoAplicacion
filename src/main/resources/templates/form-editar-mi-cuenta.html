@@ -14,15 +14,15 @@
   <form th:object="${micuentaEditForm}" method="post" th:action="@{/admin/mi_cuenta/editar}">
     <div class="mb-3">
       <label>Nombre</label>
-      <input type="text" th:field="*{nombre}" class="form-control" id="editEmail" placeholder="Email">
+      <input type="text" th:field="*{nombre}" class="form-control" id="editNombre" placeholder="Nombre">
     </div>
     <div class="mb-3">
       <label>Email</label>
-      <input type="email" th:field="*{email}" class="form-control" id="editNombre" placeholder="Nombre">
+      <input type="email" th:field="*{email}" class="form-control" id="editEmail" placeholder="Email">
     </div>
     <div class="mb-3">
       <label>Contraseña</label>
-      <input type="text" th:field="*{contrasena}" class="form-control" id="editApellido" placeholder="Apellido">
+      <input type="text" th:field="*{contrasena}" class="form-control" id="editContrasena" placeholder="Contrasena">
     </div>
     <div >
       <input value="Guardar Cambios" type="submit" class="btn btn-success"></input>

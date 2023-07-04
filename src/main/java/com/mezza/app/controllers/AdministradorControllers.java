@@ -1,13 +1,9 @@
 package com.mezza.app.controllers;
-import com.mezza.app.dtos.AdminEditDTO;
-import com.mezza.app.dtos.AdminLoginDTO;
-import com.mezza.app.dtos.AdminRegisterDTO;
-import com.mezza.app.dtos.ReservaEditDTO;
+import com.mezza.app.dtos.*;
 import com.mezza.app.models.*;
 import com.mezza.app.services.AdministradorServices;
 import com.mezza.app.services.ReservaServices;
 import com.mezza.app.services.RestaurantServices;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +22,9 @@ public class AdministradorControllers {
     private RestaurantServices restaurantServices;
 
     private String urlAnterior;
+    private Administrador adminActual;
     public void setUrlAnterior(String nuevaUrl){ this.urlAnterior = nuevaUrl;}
+    public void setAdminActual(Administrador nuevoAdmin) {this.adminActual = nuevoAdmin;}
 
     @GetMapping("/admin/dashboard")
     public String dashboard(Model model) {
@@ -37,7 +35,7 @@ public class AdministradorControllers {
 
     @GetMapping("/admin/mi_cuenta")
     public String miCuenta(Model model) {
-
+        model.addAttribute("adminActual", adminServices.getAdminById(adminActual.getId()));
         return "mi-cuenta";
     }
 
@@ -97,6 +95,12 @@ public class AdministradorControllers {
         return "form-editar-reserva";
     }
 
+    @GetMapping("/admin/mi_cuenta/editar")
+    public String editarMiCuenta(Model model) {
+        model.addAttribute("micuentaEditForm", adminServices.getAdminById(adminActual.getId()));
+        return "form-editar-mi-cuenta";
+    }
+
     @PostMapping("/admin/reserva/editar/{id}")
     public String editarReserva(@PathVariable Long id, ReservaEditDTO reservaEditDTO){
         try {
@@ -113,6 +117,7 @@ public class AdministradorControllers {
     public String login(AdminLoginDTO adminLoginDTO) {
         try {
             Administrador admin = adminServices.Logear(adminLoginDTO);
+            setAdminActual(admin);
             return "redirect:/admin/dashboard";
         } catch (Exception e) {
             return "ERROR";
@@ -120,9 +125,9 @@ public class AdministradorControllers {
     }
 
     @PostMapping("/admin/mi_cuenta/editar")
-    public String editarMiCuenta(AdminEditDTO adminEditDTO, @PathVariable Long id){
+    public String editarMiCuenta(AdminEditMiCuentaDTO adminEditMiCuentaDTO){
         try{
-            adminServices.editarAdministrador(adminEditDTO , id);
+            adminServices.editarMiCuenta(adminEditMiCuentaDTO, adminActual.getId());
             return "redirect:/admin/mi_cuenta";
         }catch (Exception e){
             return "Error al editar cuenta";

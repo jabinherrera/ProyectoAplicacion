@@ -55,25 +55,27 @@
     <img th:src="@{../img/user-profile.jpg}" class="rounded-circle border border-dark" alt="...">
 </div>
 
-<div class="container m-auto">
-    <table class="table">
+<div class="container m-auto" th:each="admin : ${adminActual}" th:object="${adminActual}">
+    <table class="table" >
         <tbody>
         <tr>
             <th></th>
-            <td >Administrador</td>
+            <td th:text="${admin.nombre}"></td>
         </tr>
         <tr>
             <th></th>
-            <td>Administrador@gmail.cl</td>
+            <td th:text="${admin.email}"></td>
         </tr>
         <tr>
             <th></th>
-            <td >Contraseña</td>
+            <td th:text="${admin.contrasena}"></td>
         </tr>
+        <a th:href="@{/admin/mi_cuenta/editar}" class="btn btn-warning" >Editar</a>
         </tbody>
     </table>
     <a></a>
 </div>
+
 
 </body>
 </html>
