@@ -60,18 +60,18 @@
     </div>
     <thead>
     <tr>
-      <th scope="col" th:text>Nombre cliente</th>
-      <th scope="col" th:text>Cantidad de personas</th>
-      <th scope="col" th:text>Hora</th>
-      <th scope="col" th:text></th>
+      <th scope="col" >Nombre cliente</th>
+      <th scope="col" >Cantidad de personas</th>
+      <th scope="col" >Fecha</th>
+      <th scope="col" >Hora</th>
     </tr>
     </thead>
     <tbody class="table-group-divider" style="background-color:#FFEFE1;">
     <tr th:each="reserva : ${reservasProximas}">
       <td th:text="${reserva.nombre_cliente}"></td>
       <td th:text="${reserva.cant_personas}"></td>
-      <td th:text="${reserva.hora}"></td>
       <td th:text="${reserva.fecha}"></td>
+      <td th:text="${reserva.hora}"></td>
       <td><a th:href="@{/admin/reserva/editar/{id}(id=${reserva.id_Reserva})}" class="btn btn-secondary" role="button">Editar</a></td>
     </tr>
     </tbody>

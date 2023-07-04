@@ -1,5 +1,6 @@
 package com.mezza.app.services;
 
+import com.mezza.app.controllers.AdministradorControllers;
 import com.mezza.app.dtos.AdminEditDTO;
 import com.mezza.app.dtos.AdminEditMiCuentaDTO;
 import com.mezza.app.dtos.AdminLoginDTO;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -20,6 +22,7 @@ public class AdministradorServices {
 
     @Autowired
     public AdministradorRepository administradorRepository;
+    public AdministradorControllers administradorControllers;
 
     public void Registrar(AdminRegisterDTO adminRegisterDTO) throws Exception {
         Administrador admin = new Administrador();
@@ -39,22 +42,6 @@ public class AdministradorServices {
     public Administrador getAdminById(Long id){
         return administradorRepository.findById(id).get();
     }
-
-//    public Administrador Logear(AdminLoginDTO adminLoginDTO) throws Exception {
-//        Administrador admin = administradorRepository.findById(adminLoginDTO.getId()).orElseThrow(() -> new Exception("Administrador no registrado"));
-//        int intentos = 0;
-//        if(!admin.getContrasena().equals(adminLoginDTO.getContrasena())){
-//            intentos++;
-//            administradorRepository.save(admin);
-//            if (intentos > 3) {
-//                administradorRepository.save(admin);
-//                throw new Exception("Exceso de intentos");
-//            }
-//            throw new Exception("Contraseña incorrecta");
-//        }
-//        administradorRepository.save(admin);
-//        return admin;
-//    }
 
     public Administrador Logear(AdminLoginDTO adminLoginDTO) throws Exception{
         Administrador admin = administradorRepository.findByEmail(adminLoginDTO.getEmail()).orElseThrow(()-> new Exception("Usuario no existe"));
@@ -84,6 +71,7 @@ public class AdministradorServices {
             verificarEmail(adminEditMiCuentaDTO.getEmail());
             admin.setEmail(adminEditMiCuentaDTO.getEmail());
             admin.setNombre(adminEditMiCuentaDTO.getNombre());
+            admin.setApellido(adminEditMiCuentaDTO.getApellido());
             admin.setContrasena(adminEditMiCuentaDTO.getContrasena());
             administradorRepository.save(admin);
         } catch (Exception e) {
@@ -108,7 +96,11 @@ public class AdministradorServices {
         if (adminRegisterDTO.getApellido() == null) throw new Exception("Apellido no ingresado");
     }
 
-    public List<Administrador> mostrarAdmins() {
+    public List<Administrador> allAdmins() {
         return administradorRepository.findAll();
+    }
+
+    public List<Administrador> mostrarAdmins(Long id){
+        return allAdmins().stream().filter(administrador -> administrador.getId() != id ).collect(Collectors.toList());
     }
 }

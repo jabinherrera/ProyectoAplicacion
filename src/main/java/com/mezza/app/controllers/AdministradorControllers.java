@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -25,6 +26,7 @@ public class AdministradorControllers {
     private Administrador adminActual;
     public void setUrlAnterior(String nuevaUrl){ this.urlAnterior = nuevaUrl;}
     public void setAdminActual(Administrador nuevoAdmin) {this.adminActual = nuevoAdmin;}
+
 
     @GetMapping("/admin/dashboard")
     public String dashboard(Model model) {
@@ -77,7 +79,7 @@ public class AdministradorControllers {
 
     @GetMapping ("/admin/administrar_usuarios")
     public String administrarUsuarios(Model model) {
-        model.addAttribute("admins", adminServices.mostrarAdmins());
+        model.addAttribute("admins", adminServices.mostrarAdmins(adminActual.getId()));
         model.addAttribute("adminRegisterForm", new Administrador());
         model.addAttribute("adminEditForm", new AdminEditDTO());
         return "administrar-usuarios";
